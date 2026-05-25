@@ -5,8 +5,9 @@ import { useTheme } from "../hooks/useTheme";
 
 const navItems = [
   { id: "home", label: "Home" },
-  { id: "about", label: "About" },
-  { id: "components", label: "Components" },
+  { id: "work", label: "Work" },
+  { id: "experience", label: "Experience" },
+  { id: "contact", label: "Contact" },
 ];
 
 export function Nav() {

@@ -37,11 +37,11 @@ export function App() {
             <Highlights />
           </Section>
 
-          <Section title="Projects" id="components">
+          <Section title="Projects" id="work">
             <Projects />
           </Section>
 
-          <Section title="Experience">
+          <Section title="Experience" id="experience">
             <ExperienceTimeline />
           </Section>
 
