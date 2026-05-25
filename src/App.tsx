@@ -1,3 +1,4 @@
+import { Analytics } from "@vercel/analytics/react";
 import { ContributionGraph } from "./components/ContributionGraph";
 import { ContactFooter } from "./components/ContactFooter";
 import { ExperienceTimeline } from "./components/ExperienceTimeline";
@@ -14,7 +15,12 @@ export function App() {
   useReveal();
 
   if (isResumePage) {
-    return <ResumePage />;
+    return (
+      <>
+        <ResumePage />
+        <Analytics />
+      </>
+    );
   }
 
   return (
@@ -42,6 +48,7 @@ export function App() {
           <ContactFooter />
         </section>
       </main>
+      <Analytics />
     </>
   );
 }
