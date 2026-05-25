@@ -3,8 +3,11 @@ export type Project = {
   category: string;
   outcome: string;
   description: string;
-  github?: string;
-  website?: string;
+  links?: Array<{
+    label: string;
+    href: string;
+    type?: "github" | "video" | "website" | "social";
+  }>;
   tech: string[];
 };
 
@@ -15,8 +18,39 @@ export const projects: Project[] = [
     outcome: "500K X impressions",
     description:
       "Owned the outreach, relationship building, provider positioning, and co-marketing launch that made NovitaAI a first-class built-in provider for Hermes Agent, reaching roughly 500K X impressions.",
-    website: "https://hermes-agent.nousresearch.com/docs/integrations/providers",
+    links: [
+      {
+        label: "Provider docs",
+        href: "https://hermes-agent.nousresearch.com/docs/integrations/providers",
+        type: "website",
+      },
+      {
+        label: "X promotion",
+        href: "https://x.com/NousResearch/status/2055051105432752509",
+        type: "social",
+      },
+    ],
     tech: ["Partner outreach", "Provider positioning", "Co-marketing"],
+  },
+  {
+    name: "OpenClaw + Kilo Code ClawShop",
+    category: "Live Sessions / Community Workshops",
+    outcome: "200+ live viewers each",
+    description:
+      "Led the OpenClaw AI Session process as NovitaAI DevRel and participated in Kilo Code's ClawShop, turning live developer sessions into public proof for AI agent tooling and community education.",
+    links: [
+      {
+        label: "OpenClaw",
+        href: "https://www.youtube.com/watch?v=DB8Jv1D3bYc&t=2557s",
+        type: "video",
+      },
+      {
+        label: "ClawShop",
+        href: "https://www.youtube.com/watch?v=4sMvgStBsW4&t=1007s",
+        type: "video",
+      },
+    ],
+    tech: ["Event hosting", "Workshop support", "AI developer tools"],
   },
   {
     name: "awesome-hermes-tutorial",
@@ -24,9 +58,34 @@ export const projects: Project[] = [
     outcome: "Public repo + live tutorial site",
     description:
       "Built an open-source Hermes Agent tutorial site covering provider configuration, messaging-channel integration, first conversation flow, and practical agent templates.",
-    github: "https://github.com/Alex-yang00/awesome-hermes-tutorial",
-    website: "https://awesome-hermes-tutorial.vercel.app",
+    links: [
+      {
+        label: "GitHub",
+        href: "https://github.com/Alex-yang00/awesome-hermes-tutorial",
+        type: "github",
+      },
+      {
+        label: "Live site",
+        href: "https://awesome-hermes-tutorial.vercel.app",
+        type: "website",
+      },
+    ],
     tech: ["Technical writing", "Agent onboarding", "Templates"],
+  },
+  {
+    name: "NovitaAI GTC Promo Video",
+    category: "Creative Coding / Launch Content",
+    outcome: "Looped at NVIDIA GTC",
+    description:
+      "Created a NovitaAI promotional video using Remotion and coding-agent workflows, turning product positioning into a conference-ready launch asset shown at NVIDIA GTC.",
+    links: [
+      {
+        label: "X post",
+        href: "https://x.com/Agent_Crafter/status/2055624457293893648",
+        type: "social",
+      },
+    ],
+    tech: ["Remotion", "Coding agents", "Launch content"],
   },
   {
     name: "AI Inference Service",
@@ -35,6 +94,26 @@ export const projects: Project[] = [
     description:
       "Built an OpenAI-compatible inference service with sglang, deterministic inference, GPU TEE-protected bare-metal execution, and on-chain usage metering.",
     tech: ["sglang", "GPU TEE", "On-chain metering"],
+  },
+  {
+    name: "NovitaAI Docs & Blog Operations",
+    category: "Developer Content Systems",
+    outcome: "Docs + blog maintenance",
+    description:
+      "Maintained developer documentation and core blog operations, using agent-assisted workflows to support technical content creation, editorial review, and AI agent developer onboarding.",
+    links: [
+      {
+        label: "Docs",
+        href: "https://novita.ai/docs/guides/introduction",
+        type: "website",
+      },
+      {
+        label: "Blog",
+        href: "https://blogs.novita.ai/",
+        type: "website",
+      },
+    ],
+    tech: ["Developer docs", "Agent workflows", "Editorial review"],
   },
   {
     name: "DevRel Automation Pipeline",

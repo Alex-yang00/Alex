@@ -1,9 +1,16 @@
-import { Github, Globe2 } from "lucide-react";
+import { Github, Globe2, Play, Radio } from "lucide-react";
 import type { PointerEvent } from "react";
 import type { Project } from "../data/projects";
 
 type ProjectCardProps = {
   project: Project;
+};
+
+const icons = {
+  github: Github,
+  social: Radio,
+  video: Play,
+  website: Globe2,
 };
 
 export function ProjectCard({ project }: ProjectCardProps) {
@@ -40,20 +47,20 @@ export function ProjectCard({ project }: ProjectCardProps) {
         ))}
       </div>
 
-      <div className="project-links">
-            {project.github ? (
-              <a href={project.github} aria-label={`${project.name} GitHub`} target="_blank" rel="noreferrer">
-                <Github aria-hidden="true" />
-                GitHub
+      {project.links?.length ? (
+        <div className="project-links">
+          {project.links.map((link) => {
+            const Icon = icons[link.type ?? "website"];
+
+            return (
+              <a key={`${project.name}-${link.href}`} href={link.href} target="_blank" rel="noreferrer">
+                <Icon aria-hidden="true" />
+                {link.label}
               </a>
-            ) : null}
-            {project.website ? (
-              <a href={project.website} aria-label={`${project.name} website`} target="_blank" rel="noreferrer">
-                <Globe2 aria-hidden="true" />
-                View
-              </a>
-            ) : null}
-      </div>
+            );
+          })}
+        </div>
+      ) : null}
     </article>
   );
 }
