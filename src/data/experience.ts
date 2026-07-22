@@ -20,7 +20,7 @@ export const experiences: Experience[] = [
     bullets: [
       "Led the Hermes Agent partnership from outreach to co-marketing launch, helping NovitaAI become a first-class built-in provider and reaching roughly 500K X impressions.",
       "Hosted or participated in public AI developer sessions including OpenClaw AI Session and Kilo Code ClawShop, each with 200+ live viewers.",
-      "Built growth systems including GitHub agent outreach and SEO agents for open-source discovery, PR workflows, collaboration tracking, and content strategy.",
+      "Built DevRel automation supporting 100+ merged PRs and 10+ leads; grew Discord from 3K to 5K and sourced ~$300K in BD resources through developer community marketing.",
     ],
     current: true,
   },

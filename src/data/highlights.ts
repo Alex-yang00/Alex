@@ -3,21 +3,31 @@ export const highlights = [
     label: "Partnership Reach",
     value: "500K",
     detail: "Hermes Agent x NovitaAI X impressions",
+    wide: false,
   },
   {
     label: "Open-source PRs",
-    value: "50+",
+    value: "100+",
     detail: "merged through DevRel outreach workflows",
+    wide: false,
   },
   {
     label: "Community Growth",
-    value: "3K -> 4K",
+    value: "3K -> 5K",
     detail: "Discord community members",
+    wide: false,
   },
   {
     label: "Developer Events",
     value: "200+",
     detail: "live viewers per OpenClaw / ClawShop session",
+    wide: false,
+  },
+  {
+    label: "BD Resources",
+    value: "~$300K",
+    detail: "sourced through developer community marketing",
+    wide: true,
   },
 ];
 

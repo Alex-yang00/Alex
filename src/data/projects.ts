@@ -118,9 +118,9 @@ export const projects: Project[] = [
   {
     name: "DevRel Automation Pipeline",
     category: "Growth Automation",
-    outcome: "50+ merged PRs / 10+ leads",
+    outcome: "100+ merged PRs / 10+ leads",
     description:
-      "Built a GitHub agent outreach system for repository discovery, PR submission, email follow-up, collaboration tracking, and SEO workflows, supporting 50+ merged PRs and 10+ commercial leads.",
+      "Built a GitHub agent outreach system for repository discovery, PR submission, email follow-up, collaboration tracking, and SEO workflows, supporting 100+ merged PRs and 10+ commercial leads.",
     tech: ["Repository discovery", "PR outreach", "SEO agent"],
   },
 ];
