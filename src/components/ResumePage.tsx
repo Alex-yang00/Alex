@@ -1,4 +1,5 @@
-import { ArrowLeft, Mail, Printer } from "lucide-react";
+import { ArrowLeft, Download, Mail, Printer } from "lucide-react";
+import { useMemo, useState } from "react";
 import { profile } from "../data/profile";
 
 type ResumeContent = {
@@ -44,7 +45,7 @@ const english: ResumeContent = {
   impacts: [
     { label: "Partnership reach", value: "500K", detail: "Hermes Agent x NovitaAI impressions" },
     { label: "Open-source", value: "100+", detail: "merged outreach PRs" },
-    { label: "Community", value: "3K -> 5K", detail: "Discord members" },
+    { label: "Community", value: "3K → 5K", detail: "Discord members" },
     { label: "Events", value: "200+", detail: "live viewers per session" },
     { label: "BD resources", value: "~$300K", detail: "sourced via community marketing" },
   ],
@@ -119,7 +120,7 @@ const chinese: ResumeContent = {
   impacts: [
     { label: "合作传播", value: "500K", detail: "Hermes Agent x NovitaAI 曝光" },
     { label: "开源拓展", value: "100+", detail: "合并的外联 PR" },
-    { label: "社区增长", value: "3K -> 5K", detail: "Discord 成员" },
+    { label: "社区增长", value: "3K → 5K", detail: "Discord 成员" },
     { label: "开发者活动", value: "200+", detail: "单场直播观众" },
     { label: "BD 资源", value: "~$300K", detail: "开发者社区营销带来" },
   ],
@@ -179,13 +180,20 @@ const chinese: ResumeContent = {
   languages: "中文（母语）/ 英语（IELTS 6.5）/ 韩语（TOPIK 5）",
 };
 
-function ResumeSheet({ content, pageNumber }: { content: ResumeContent; pageNumber: number }) {
+type ResumeLanguage = "en" | "zh";
+
+const resumeByLanguage: Record<ResumeLanguage, ResumeContent> = {
+  en: english,
+  zh: chinese,
+};
+
+function ResumeSheet({ content }: { content: ResumeContent }) {
   return (
     <article className="resume-page" lang={content.lang}>
       <header className="resume-hero">
         <div>
           <p className="resume-kicker">{content.kicker}</p>
-          <h1>{content.lang === "zh-CN" ? `${profile.name} | 中文简历` : profile.name}</h1>
+          <h1>{profile.name}</h1>
           <p>{content.summary}</p>
         </div>
         <div className="resume-contact">
@@ -263,12 +271,29 @@ function ResumeSheet({ content, pageNumber }: { content: ResumeContent; pageNumb
         </div>
       </section>
 
-      <footer className="resume-page-number">{pageNumber} / 2</footer>
+      <footer className="resume-page-number">
+        <span>{content.lang === "zh-CN" ? "个人简历" : "Curriculum Vitae"}</span>
+        <span>Alex YANG · 2026</span>
+      </footer>
     </article>
   );
 }
 
 export function ResumePage() {
+  const initialLanguage = useMemo<ResumeLanguage>(() => {
+    const language = new URLSearchParams(window.location.search).get("lang");
+    return language === "zh" ? "zh" : "en";
+  }, []);
+  const [language, setLanguage] = useState<ResumeLanguage>(initialLanguage);
+  const content = resumeByLanguage[language];
+
+  const selectLanguage = (nextLanguage: ResumeLanguage) => {
+    setLanguage(nextLanguage);
+    const url = new URL(window.location.href);
+    url.searchParams.set("lang", nextLanguage);
+    window.history.replaceState({}, "", url);
+  };
+
   return (
     <>
       <div className="background" aria-hidden="true" />
@@ -276,17 +301,42 @@ export function ResumePage() {
         <header className="resume-top">
           <a href="/" className="resume-back">
             <ArrowLeft aria-hidden="true" />
-            Back
+            {language === "zh" ? "返回" : "Back"}
           </a>
-          <button type="button" className="resume-print" onClick={() => window.print()}>
-            <Printer aria-hidden="true" />
-            Print / Save PDF
-          </button>
+          <div className="resume-actions">
+            <div className="resume-language" aria-label="Resume language">
+              <button
+                type="button"
+                className={language === "en" ? "is-active" : undefined}
+                onClick={() => selectLanguage("en")}
+              >
+                English
+              </button>
+              <button
+                type="button"
+                className={language === "zh" ? "is-active" : undefined}
+                onClick={() => selectLanguage("zh")}
+              >
+                中文
+              </button>
+            </div>
+            <a
+              className="resume-download"
+              href={language === "zh" ? "/resume-zh.pdf" : "/resume-en.pdf"}
+              download
+            >
+              <Download aria-hidden="true" />
+              {language === "zh" ? "下载 PDF" : "Download PDF"}
+            </a>
+            <button type="button" className="resume-print" onClick={() => window.print()}>
+              <Printer aria-hidden="true" />
+              {language === "zh" ? "打印" : "Print"}
+            </button>
+          </div>
         </header>
 
         <div className="resume-document">
-          <ResumeSheet content={english} pageNumber={1} />
-          <ResumeSheet content={chinese} pageNumber={2} />
+          <ResumeSheet content={content} />
         </div>
       </main>
     </>
