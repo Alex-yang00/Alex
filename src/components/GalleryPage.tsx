@@ -32,10 +32,6 @@ export function GalleryPage() {
             A working archive of developer sessions I have hosted or joined, alongside the
             launch pages and educational experiences built around them.
           </p>
-          <div className="gallery-counts" aria-label="Gallery summary">
-            <span><strong>{hostedEvents.length}</strong> recorded sessions</span>
-            <span><strong>{studioProjects.length}</strong> selected projects</span>
-          </div>
         </header>
 
         <section className="gallery-section" aria-labelledby="sessions-heading">

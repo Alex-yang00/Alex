@@ -9,6 +9,7 @@ export type Project = {
     type?: "github" | "video" | "website" | "social";
   }>;
   tech: string[];
+  featured?: boolean;
 };
 
 export const projects: Project[] = [
@@ -31,6 +32,32 @@ export const projects: Project[] = [
       },
     ],
     tech: ["Partner outreach", "Provider positioning", "Co-marketing"],
+    featured: true,
+  },
+  {
+    name: "Novita AI CLI",
+    category: "Developer Infrastructure / Open Source",
+    outcome: "Unified AI + GPU command line",
+    description:
+      "Built the Novita CLI for model APIs, image/video/audio generation, GPU runtimes, Sandbox environments, serverless endpoints, files, tasks, and account workflows from a terminal or AI agent.",
+    links: [
+      { label: "GitHub", href: "https://github.com/novitalabs/novita-cli", type: "github" },
+      { label: "PyPI", href: "https://pypi.org/project/novita/", type: "website" },
+    ],
+    tech: ["Python", "CLI design", "GPU APIs", "Agent tooling"],
+    featured: true,
+  },
+  {
+    name: "Novita Skills",
+    category: "Agent Infrastructure / Open Source",
+    outcome: "Reusable skills for AI builders",
+    description:
+      "Created the official Novita Skills repository for reusable agent workflows covering model APIs, GPU infrastructure, Sandbox, integrations, troubleshooting, and public-safe design guidance.",
+    links: [
+      { label: "GitHub", href: "https://github.com/novitalabs/novita-skills", type: "github" },
+    ],
+    tech: ["Agent skills", "API guidance", "Sandbox", "Documentation"],
+    featured: true,
   },
   {
     name: "OpenClaw + Kilo Code ClawShop",
@@ -94,6 +121,7 @@ export const projects: Project[] = [
     description:
       "Built an OpenAI-compatible inference service with sglang, deterministic inference, GPU TEE-protected bare-metal execution, and on-chain usage metering.",
     tech: ["sglang", "GPU TEE", "On-chain metering"],
+    featured: true,
   },
   {
     name: "NovitaAI Docs & Blog Operations",

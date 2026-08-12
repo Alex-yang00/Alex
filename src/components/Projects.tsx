@@ -2,7 +2,7 @@ import { projects } from "../data/projects";
 import { ProjectCard } from "./ProjectCard";
 
 export function Projects({ compact = false }: { compact?: boolean }) {
-  const visibleProjects = compact ? projects.slice(0, 4) : projects;
+  const visibleProjects = compact ? projects.filter((project) => project.featured).slice(0, 4) : projects;
 
   return (
     <>

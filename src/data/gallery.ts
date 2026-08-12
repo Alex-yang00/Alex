@@ -130,4 +130,18 @@ export const studioProjects: StudioProject[] = [
     description: "A static events hub with the original event pages for Kilo Code, Harbor, and Hy3 challenges.",
     links: [{ label: "Open work", href: "/work/events", type: "website" }],
   },
+  {
+    index: "007",
+    title: "Novita AI CLI",
+    category: "Developer Infrastructure / Open Source",
+    description: "A unified command line for Novita model APIs, media generation, GPU runtimes, Sandbox, and serverless workflows.",
+    links: [{ label: "GitHub", href: "https://github.com/novitalabs/novita-cli", type: "source" }],
+  },
+  {
+    index: "008",
+    title: "Novita Skills",
+    category: "Agent Infrastructure / Open Source",
+    description: "Official reusable skills for Novita APIs, GPU infrastructure, Sandbox workflows, integrations, and design guidance.",
+    links: [{ label: "GitHub", href: "https://github.com/novitalabs/novita-skills", type: "source" }],
+  },
 ];
