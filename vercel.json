@@ -1,8 +1,27 @@
 {
   "rewrites": [
-    {
-      "source": "/(.*)",
-      "destination": "/index.html"
-    }
+    { "source": "/work/hermes", "destination": "/work-original/hermes/index.html" },
+    { "source": "/work/hermes/", "destination": "/work-original/hermes/index.html" },
+    { "source": "/work/hermes/images/:path*", "destination": "/work-original/hermes/images/:path*" },
+    { "source": "/work/hermes/assets/:path*", "destination": "/work-original/hermes/assets/:path*" },
+    { "source": "/work/hermes/:path*", "destination": "/work-original/hermes/index.html" },
+    { "source": "/work/harbor", "destination": "/work-original/harbor/index.html" },
+    { "source": "/work/harbor/", "destination": "/work-original/harbor/index.html" },
+    { "source": "/work/harbor/:path*", "destination": "/work-original/harbor/:path*" },
+    { "source": "/api/leaderboard", "destination": "/api/leaderboard.js" },
+    { "source": "/api/submit-job", "destination": "/api/submit-job.js" },
+    { "source": "/work/actionlayer", "destination": "/work-original/actionlayer/index.html" },
+    { "source": "/work/actionlayer/", "destination": "/work-original/actionlayer/index.html" },
+    { "source": "/work/actionlayer/:path*", "destination": "/work-original/actionlayer/:path*" },
+    { "source": "/work/kilo-workshop", "destination": "/work-original/kilo-workshop/index.html" },
+    { "source": "/work/kilo-workshop/", "destination": "/work-original/kilo-workshop/index.html" },
+    { "source": "/work/kilo-workshop/:path*", "destination": "/work-original/kilo-workshop/:path*" },
+    { "source": "/work/startup", "destination": "/work-original/startup/index.html" },
+    { "source": "/work/startup/", "destination": "/work-original/startup/index.html" },
+    { "source": "/work/startup/:path*", "destination": "/work-original/startup/:path*" },
+    { "source": "/work/events", "destination": "/work-original/events/index.html" },
+    { "source": "/work/events/", "destination": "/work-original/events/index.html" },
+    { "source": "/work/events/:path*", "destination": "/work-original/events/:path*" },
+    { "source": "/(.*)", "destination": "/index.html" }
   ]
 }

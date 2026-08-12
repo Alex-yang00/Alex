@@ -1,0 +1,2015 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Harbor Agent Benchmark on Novita Sandbox</title>
+  <meta name="description" content="Compete on Terminal-Bench 2.1 tracks through Novita Sandbox, then submit your public Harbor Hub job link to the live leaderboard.">
+  <style>
+    :root {
+      --bg: #f5f5f2;
+      --paper: #ffffff;
+      --ink: #000000;
+      --ink-2: #262626;
+      --muted: #737373;
+      --soft: #e5e5e5;
+      --line: rgba(0, 0, 0, .13);
+      --green: #23d57c;
+      --green-soft: rgba(35, 213, 124, .13);
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      --sans: "Aptos", "DM Sans", ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --shadow: 0 24px 70px rgba(0, 0, 0, .08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at 18% 12%, rgba(35, 213, 124, .18), transparent 30%),
+        linear-gradient(90deg, rgba(0,0,0,.045) 1px, transparent 1px),
+        linear-gradient(rgba(0,0,0,.045) 1px, transparent 1px),
+        var(--bg);
+      background-size: auto, 32px 32px, 32px 32px, auto;
+      color: var(--ink);
+      font-family: var(--sans);
+      letter-spacing: 0;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.86), rgba(255,255,255,.56) 42%, rgba(245,245,242,.82));
+      content: "";
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .wrap {
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      border-bottom: 1px solid var(--line);
+      background: rgba(255, 255, 255, .82);
+      backdrop-filter: blur(20px);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 68px;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 1px;
+      font-weight: 700;
+      user-select: none;
+    }
+
+    .novita-combine {
+      display: block;
+      width: 170px;
+      height: 35px;
+      color: var(--ink);
+      flex: 0 0 auto;
+    }
+
+    .brand-sep {
+      color: var(--muted);
+      font-size: 18px;
+      font-weight: 500;
+      line-height: 1;
+      transform: translateY(-2px, 1px);
+      margin-right: 9px;
+    }
+
+    .brand-harbor {
+      color: var(--ink);
+      font-family: "Arial Black", "Aptos Display", var(--sans);
+      font-size: 28px;
+      font-weight: 900;
+      letter-spacing: -.02em;
+      line-height: .95;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 20px;
+    }
+
+    .nav-links a:hover {
+      color: var(--ink);
+    }
+
+    .rail-nav {
+      position: fixed;
+      top: 50%;
+      right: 18px;
+      z-index: 9;
+      display: grid;
+      gap: 8px;
+      transform: translateY(-50%);
+    }
+
+    .rail-nav a {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      min-height: 32px;
+      border: 1px solid rgba(8, 8, 8, .18);
+      border-radius: 3px;
+      background: rgba(255, 255, 255, .88);
+      padding: 0 10px;
+      color: var(--muted);
+      font: 700 11px/1 var(--mono);
+      text-transform: uppercase;
+      backdrop-filter: blur(12px);
+    }
+
+    .rail-nav a:hover {
+      border-color: var(--green);
+      background: var(--green-soft);
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    .hero {
+      position: relative;
+      padding: 62px 0 46px;
+      border-top: 0;
+    }
+
+    .hero-main {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(360px, .58fr);
+      gap: 38px;
+      align-items: end;
+    }
+
+    .hero-main > * {
+      min-width: 0;
+    }
+
+    .hero-copy {
+      display: grid;
+      gap: 24px;
+      align-content: start;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      width: fit-content;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255,255,255,.7);
+      padding: 7px 10px;
+      color: #111;
+      font: 700 11px/1 var(--mono);
+      text-transform: uppercase;
+      backdrop-filter: blur(20px);
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--green);
+      box-shadow: 0 0 0 4px rgba(35, 213, 124, .16);
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 860px;
+      font-size: clamp(40px, 5vw, 68px);
+      line-height: .98;
+      letter-spacing: 0;
+      font-weight: 780;
+      overflow-wrap: normal;
+    }
+
+    h1 span {
+      display: block;
+    }
+
+    .hero-lead {
+      max-width: 690px;
+      margin: 0;
+      color: var(--ink-2);
+      font-size: clamp(17px, 1.5vw, 21px);
+      line-height: 1.5;
+      overflow-wrap: anywhere;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .hero-facts {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 4px;
+    }
+
+    .fact-card,
+    .step-card {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255,255,255,.78);
+      backdrop-filter: blur(18px);
+    }
+
+    .fact-card {
+      padding: 14px;
+    }
+
+    .fact-card strong {
+      display: block;
+      color: var(--ink);
+      font-size: 24px;
+      line-height: 1;
+      letter-spacing: 0;
+    }
+
+    .fact-card span {
+      display: block;
+      margin-top: 8px;
+      color: var(--muted);
+      font: 700 11px/1.25 var(--mono);
+      text-transform: uppercase;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      border-radius: 4px;
+      padding: 0 18px;
+      border: 1px solid var(--ink);
+      background: var(--ink);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 20px;
+      transition: transform .18s ease, border-color .18s ease, background .18s ease, box-shadow .18s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, .16);
+      text-decoration: none;
+    }
+
+    .btn.secondary {
+      background: var(--paper);
+      color: var(--ink);
+      border-color: var(--line);
+    }
+
+    .btn.secondary:hover {
+      border-color: var(--green);
+      background: var(--green-soft);
+    }
+
+    .btn[disabled],
+    .btn[aria-disabled="true"] {
+      opacity: .58;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    .btn.text {
+      border-color: var(--line);
+      background: rgba(255,255,255,.62);
+      color: var(--ink);
+      padding-inline: 16px;
+    }
+
+    .btn.text:hover {
+      border-color: var(--line);
+      background: rgba(255,255,255,.72);
+      box-shadow: none;
+    }
+
+    .details-cta {
+      border-color: var(--green);
+      background: var(--green);
+      color: var(--ink);
+      min-width: 178px;
+      box-shadow: 0 12px 30px rgba(35, 213, 124, .22);
+    }
+
+    .details-cta:hover {
+      border-color: var(--green);
+      background: var(--green);
+      box-shadow: 0 16px 38px rgba(35, 213, 124, .3);
+    }
+
+    .points {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      max-width: none;
+      margin: 0;
+    }
+
+    .point {
+      display: grid;
+      grid-template-columns: 11px minmax(0, 1fr);
+      gap: 12px;
+      color: #2d2d2d;
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    .point::before {
+      width: 11px;
+      height: 11px;
+      margin-top: 8px;
+      border-radius: 999px;
+      background: var(--green);
+      box-shadow: 0 0 0 4px rgba(35, 213, 124, .12);
+      content: "";
+    }
+
+    .hero-terminal {
+      width: 100%;
+      min-width: 0;
+      overflow: hidden;
+      border: 1px solid var(--ink);
+      border-radius: 8px;
+      background: var(--ink);
+      color: var(--paper);
+      box-shadow: 18px 18px 0 rgba(35, 213, 124, .22), var(--shadow);
+    }
+
+    .hero-terminal-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255,255,255,.16);
+      background: #0a0a0a;
+      padding: 12px 14px;
+      color: #a1a1a1;
+      font: 700 11px/1 var(--mono);
+      text-transform: uppercase;
+    }
+
+    .window-dots {
+      display: flex;
+      gap: 6px;
+    }
+
+    .window-dots span {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #404040;
+    }
+
+    .window-dots span:first-child {
+      background: var(--green);
+    }
+
+    .hero-terminal-body {
+      display: grid;
+      gap: 16px;
+      padding: 20px;
+    }
+
+    .hero-terminal .code {
+      overflow-x: hidden;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+    }
+
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .metric {
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 4px;
+      padding: 12px;
+      background: rgba(255,255,255,.04);
+    }
+
+    .metric span {
+      display: block;
+      color: #a1a1a1;
+      font: 700 10px/1 var(--mono);
+      text-transform: uppercase;
+    }
+
+    .metric strong {
+      display: block;
+      margin-top: 8px;
+      color: #ffffff;
+      font-size: 24px;
+      line-height: 1;
+    }
+
+    .credit {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 18px;
+      align-items: center;
+      max-width: 600px;
+      margin-top: 32px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--paper);
+      padding: 18px 20px;
+      box-shadow: 12px 12px 0 rgba(35, 213, 124, .22);
+    }
+
+    .details-grid {
+      display: grid;
+      grid-template-columns: minmax(0, .9fr) minmax(360px, .7fr);
+      gap: 28px;
+      align-items: start;
+    }
+
+    .credit strong {
+      font-size: clamp(40px, 6vw, 64px);
+      line-height: .9;
+      letter-spacing: 0;
+    }
+
+    .credit span {
+      display: block;
+      color: var(--muted);
+      line-height: 1.45;
+      font-size: 15px;
+    }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .step-card {
+      position: relative;
+      min-height: 190px;
+      padding: 22px;
+    }
+
+    .step-card::before {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border: 1px solid rgba(35, 213, 124, .7);
+      border-radius: 999px;
+      background: var(--green-soft);
+      color: var(--ink);
+      font: 800 12px/1 var(--mono);
+      content: attr(data-step);
+    }
+
+    .step-card h3 {
+      margin: 24px 0 10px;
+      font-size: 24px;
+      line-height: 1;
+      letter-spacing: 0;
+    }
+
+    .step-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    .command-card {
+      overflow: hidden;
+      border: 1px solid var(--ink);
+      border-radius: 8px;
+      background: var(--paper);
+      box-shadow: var(--shadow);
+    }
+
+    .command-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--ink);
+      padding: 13px 15px;
+      background: var(--green-soft);
+      font: 700 12px/1 var(--mono);
+      text-transform: uppercase;
+    }
+
+    .command-body {
+      padding: 26px;
+    }
+
+    .command-label {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 12px;
+    }
+
+    .code {
+      display: block;
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      background: #0b0b0b;
+      color: #f7f7f7;
+      padding: 18px;
+      border-radius: 4px;
+      font: 700 14px/1.7 var(--mono);
+      white-space: pre;
+    }
+
+    .template-list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .template-name {
+      margin: 18px 0 8px;
+      font-weight: 800;
+      font-size: 14px;
+    }
+
+    .template-name:first-child {
+      margin-top: 0;
+    }
+
+    .code .accent {
+      color: var(--green);
+    }
+
+    section {
+      padding: 64px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .section-title {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 28px;
+      margin-bottom: 28px;
+    }
+
+    .live-copy {
+      display: grid;
+      gap: 10px;
+      justify-items: start;
+    }
+
+    .live-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid var(--ink);
+      border-radius: 999px;
+      background: var(--paper);
+      padding: 8px 10px;
+      font: 700 11px/1 var(--mono);
+      text-transform: uppercase;
+    }
+
+    .live-dot {
+      width: 8px;
+      height: 8px;
+      border: 1px solid var(--ink);
+      background: var(--green);
+      animation: livePulse 1.4s ease-in-out infinite;
+    }
+
+    .leaderboard-section {
+      padding-top: 64px;
+    }
+
+    .track-copy {
+      display: grid;
+      grid-template-columns: minmax(0, .78fr) minmax(280px, .42fr);
+      gap: 28px;
+      align-items: end;
+      margin-bottom: 28px;
+    }
+
+    .steps-compact {
+      display: grid;
+      gap: 10px;
+    }
+
+    .step-mini {
+      display: grid;
+      grid-template-columns: 42px minmax(0, 1fr);
+      gap: 12px;
+      align-items: center;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255,255,255,.74);
+      padding: 12px;
+    }
+
+    .step-mini strong {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border: 1px solid rgba(35, 213, 124, .7);
+      border-radius: 999px;
+      background: var(--green-soft);
+      font: 800 12px/1 var(--mono);
+    }
+
+    .step-mini span {
+      color: var(--ink-2);
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .filter {
+      min-height: 38px;
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      background: var(--paper);
+      padding: 0 14px;
+      color: var(--ink);
+      font: 700 12px/1 var(--mono);
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: border-color .18s ease, background .18s ease, transform .18s ease;
+    }
+
+    .filter.active {
+      border-color: var(--green);
+      background: var(--green-soft);
+    }
+
+    .filter:hover {
+      transform: translateY(-1px);
+      border-color: var(--ink);
+    }
+
+    h2 {
+      margin: 0;
+      max-width: 740px;
+      font-size: clamp(34px, 4.7vw, 64px);
+      line-height: .9;
+      letter-spacing: 0;
+      font-weight: 760;
+    }
+
+    .hint {
+      max-width: 360px;
+      color: var(--muted);
+      line-height: 1.5;
+      font-size: 16px;
+    }
+
+    .leaderboard {
+      position: relative;
+      border: 1px solid var(--ink);
+      border-radius: 8px;
+      background: var(--paper);
+      overflow-x: auto;
+      overflow-y: hidden;
+      max-width: 100%;
+      box-shadow: var(--shadow);
+    }
+
+    .join-strip {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 18px;
+      align-items: center;
+      margin-top: 18px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--paper);
+      padding: 18px 20px;
+    }
+
+    .join-strip strong {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 18px;
+    }
+
+    .join-strip span {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    .rule-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .rule-card {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--paper);
+      padding: 20px;
+      transition: border-color .18s ease, transform .18s ease, box-shadow .18s ease;
+    }
+
+    .rule-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(35, 213, 124, .7);
+      box-shadow: 0 16px 44px rgba(0,0,0,.07);
+    }
+
+    .rule-card strong {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 16px;
+    }
+
+    .rule-card span {
+      color: var(--muted);
+      line-height: 1.5;
+      font-size: 14px;
+    }
+
+    .program-card {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 24px;
+      align-items: center;
+      border: 1px solid var(--ink);
+      border-radius: 8px;
+      background: var(--ink);
+      color: var(--paper);
+      padding: clamp(26px, 5vw, 48px);
+    }
+
+    .program-card h2 {
+      color: var(--paper);
+    }
+
+    .program-card p {
+      max-width: 680px;
+      margin: 18px 0 0;
+      color: #d7d7d7;
+      line-height: 1.55;
+      font-size: 16px;
+    }
+
+    .program-card .btn {
+      background: var(--green);
+      color: var(--ink);
+      border-color: var(--green);
+    }
+
+    .dual-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    .program-card .btn.secondary {
+      background: transparent;
+      color: var(--paper);
+      border-color: rgba(255,255,255,.45);
+    }
+
+    .submit-panel {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 10px;
+      margin: 22px 0 18px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--paper);
+      padding: 14px;
+    }
+
+    .submit-panel input {
+      min-width: 0;
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      background: #fff;
+      color: var(--ink);
+      padding: 0 14px;
+      font: 600 14px/44px var(--mono);
+    }
+
+    .submit-panel input:focus {
+      outline: 2px solid rgba(35, 213, 124, .42);
+      outline-offset: 2px;
+      border-color: var(--green);
+    }
+
+    .submit-note {
+      grid-column: 1 / -1;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .submit-shell {
+      display: grid;
+      grid-template-columns: minmax(0, .78fr) minmax(340px, .52fr);
+      gap: 18px;
+      align-items: start;
+    }
+
+    .details-modal {
+      width: min(760px, calc(100% - 32px));
+      max-height: min(860px, calc(100vh - 48px));
+      border: 1px solid rgba(255,255,255,.14);
+      border-radius: 8px;
+      background: #050505;
+      color: #ffffff;
+      padding: 0;
+      overflow: hidden;
+      box-shadow: 0 30px 100px rgba(0,0,0,.45);
+    }
+
+    .details-modal::backdrop {
+      background: rgba(0,0,0,.46);
+      backdrop-filter: blur(8px);
+    }
+
+    .modal-inner {
+      max-height: inherit;
+      overflow: auto;
+      padding: clamp(22px, 4vw, 34px);
+    }
+
+    .modal-head {
+      display: flex;
+      align-items: start;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 20px;
+    }
+
+    .modal-title {
+      margin: 0;
+      font-size: clamp(28px, 4vw, 38px);
+      line-height: 1;
+      letter-spacing: 0;
+    }
+
+    .modal-kicker {
+      margin: 10px 0 0;
+      color: var(--green);
+      font-weight: 800;
+      line-height: 1.35;
+    }
+
+    .modal-close {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      border: 1px solid rgba(35,213,124,.7);
+      border-radius: 999px;
+      background: transparent;
+      color: #ffffff;
+      cursor: pointer;
+      font-size: 24px;
+      line-height: 1;
+    }
+
+    .modal-callout {
+      border-left: 4px solid var(--green);
+      border-radius: 4px;
+      background: rgba(35,213,124,.08);
+      padding: 16px 18px;
+      color: #f4f4f4;
+      line-height: 1.6;
+    }
+
+    .modal-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 18px;
+      margin-top: 28px;
+    }
+
+    .modal-panel {
+      border: 1px solid rgba(255,255,255,.14);
+      border-radius: 8px;
+      background: rgba(255,255,255,.045);
+      padding: 20px;
+    }
+
+    .modal-panel h3,
+    .timeline h3 {
+      margin: 0 0 16px;
+      color: #ffffff;
+      font-size: 22px;
+      line-height: 1.1;
+    }
+
+    .modal-panel p,
+    .modal-panel li {
+      color: #e5e5e5;
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    .modal-panel ul {
+      display: grid;
+      gap: 10px;
+      margin: 0;
+      padding-left: 18px;
+    }
+
+    .prize-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .prize-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 8px;
+      background: rgba(255,255,255,.045);
+      padding: 14px;
+      color: #ffffff;
+    }
+
+    .prize-item strong {
+      color: var(--green);
+      text-align: right;
+    }
+
+    .judging-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .judging-card {
+      border: 1px solid rgba(35,213,124,.28);
+      border-radius: 8px;
+      background: rgba(35,213,124,.08);
+      padding: 14px;
+    }
+
+    .judging-card strong {
+      display: block;
+      color: var(--green);
+      font-size: 26px;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .modal-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 24px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,.12);
+    }
+
+    .modal-actions .btn {
+      background: var(--green);
+      border-color: var(--green);
+      color: #000000;
+    }
+
+    .modal-actions .btn.secondary {
+      background: transparent;
+      border-color: rgba(255,255,255,.24);
+      color: #ffffff;
+    }
+
+    .timeline {
+      margin-top: 18px;
+    }
+
+    .timeline-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .timeline-card {
+      border: 1px solid rgba(255,255,255,.14);
+      border-radius: 8px;
+      background: rgba(255,255,255,.045);
+      padding: 16px;
+    }
+
+    .timeline-card strong {
+      display: block;
+      color: var(--green);
+      margin-bottom: 8px;
+    }
+
+    .timeline-card span {
+      color: #cfcfcf;
+      font-size: 14px;
+    }
+
+    table {
+      width: 100%;
+      min-width: 760px;
+      border-collapse: collapse;
+    }
+
+    th,
+    td {
+      padding: 18px 20px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      font-size: 14px;
+    }
+
+    th {
+      background: #f0f0f0;
+      color: #555;
+      font: 700 12px/1 var(--mono);
+      text-transform: uppercase;
+    }
+
+    tbody tr:hover {
+      background: rgba(35, 213, 124, .045);
+    }
+
+    tr:last-child td {
+      border-bottom: 0;
+    }
+
+    tbody tr {
+      animation: rowFlash 1.1s ease both;
+    }
+
+    tbody tr:nth-child(2) { animation-delay: .08s; }
+    tbody tr:nth-child(3) { animation-delay: .16s; }
+    tbody tr:nth-child(4) { animation-delay: .24s; }
+    tbody tr:nth-child(5) { animation-delay: .32s; }
+
+    .rank {
+      font: 800 14px/1 var(--mono);
+    }
+
+    .score {
+      display: inline-flex;
+      min-width: 58px;
+      justify-content: center;
+      border: 1px solid rgba(35, 213, 124, .7);
+      border-radius: 4px;
+      background: var(--green-soft);
+      padding: 7px 9px;
+      font: 800 13px/1 var(--mono);
+      animation: scoreGlow 2.8s ease-in-out infinite;
+    }
+
+    .job-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid rgba(35, 213, 124, .7);
+      border-radius: 4px;
+      background: var(--green-soft);
+      padding: 7px 10px;
+      color: var(--ink);
+      font: 800 12px/1 var(--mono);
+      white-space: nowrap;
+    }
+
+    .job-link::after {
+      content: "↗";
+      font-size: 13px;
+    }
+
+    .job-link:hover {
+      text-decoration: none;
+      transform: translateY(-1px);
+    }
+
+    .job-link.pending {
+      border-color: var(--line);
+      background: #f6f6f6;
+      color: var(--muted);
+      cursor: default;
+    }
+
+    .job-link.pending::after {
+      content: "";
+    }
+
+    footer {
+      padding: 28px 0 42px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    @keyframes livePulse {
+      0%, 100% {
+        box-shadow: 0 0 0 0 rgba(35, 213, 124, .55);
+      }
+      50% {
+        box-shadow: 0 0 0 7px rgba(35, 213, 124, 0);
+      }
+    }
+
+    @keyframes rowFlash {
+      0%, 100% {
+        background: transparent;
+      }
+      18% {
+        background: rgba(35, 213, 124, .045);
+      }
+    }
+
+    @keyframes scoreGlow {
+      0%, 100% {
+        box-shadow: inset 0 0 0 0 rgba(0,0,0,0), 0 0 0 rgba(35,213,124,0);
+      }
+      50% {
+        box-shadow: inset 0 0 0 1px rgba(0,0,0,.08), 0 0 18px rgba(35,213,124,.22);
+      }
+    }
+
+    @media (max-width: 1100px) {
+      .nav-links {
+        display: none;
+      }
+
+      .novita-combine {
+        width: 158px;
+        height: 40px;
+      }
+
+      .brand-sep {
+        font-size: 18px;
+      }
+
+      .brand-harbor {
+        font-size: 22px;
+      }
+
+      .rail-nav {
+        display: none;
+      }
+
+      .hero-main,
+      .details-grid,
+      .track-copy {
+        grid-template-columns: 1fr;
+      }
+
+      .section-title {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .point {
+        overflow-wrap: anywhere;
+        word-break: normal;
+      }
+
+      .submit-panel {
+        grid-template-columns: 1fr;
+      }
+
+      .join-strip {
+        grid-template-columns: 1fr;
+      }
+
+      .rule-grid,
+      .steps-grid,
+      .submit-shell,
+      .program-card {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 900px) {
+    }
+
+    @media (max-width: 600px) {
+      .wrap {
+        width: calc(100% - 28px);
+        margin-left: 14px;
+        margin-right: auto;
+      }
+
+      .hero {
+        padding-top: 44px;
+      }
+
+      .hero-main {
+        gap: 28px;
+      }
+
+      .hero-terminal {
+        max-width: 100%;
+        box-shadow: 8px 8px 0 rgba(35, 213, 124, .22), var(--shadow);
+      }
+
+      .hero-terminal-head {
+        gap: 12px;
+      }
+
+      .hero-terminal-head > span {
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .hero-terminal .code {
+        font-size: 12px;
+        line-height: 1.65;
+      }
+
+      h1 {
+        font-size: clamp(32px, 8.4vw, 38px);
+        line-height: 1.02;
+        overflow-wrap: anywhere;
+      }
+
+      .track-copy h1 {
+        font-size: clamp(38px, 12vw, 52px);
+      }
+
+      .point {
+        font-size: 16px;
+        overflow-wrap: anywhere;
+      }
+
+      .points {
+        grid-template-columns: 1fr;
+        max-width: 360px;
+      }
+
+      .hero-facts {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-actions .btn {
+        flex: 1 1 100%;
+        min-width: 0;
+        padding-inline: 12px;
+        font-size: 13px;
+      }
+
+      .dataset-table {
+        overflow-x: hidden;
+      }
+
+      .dataset-table table {
+        min-width: 0;
+      }
+
+      .dataset-table thead {
+        display: none;
+      }
+
+      .dataset-table tbody,
+      .dataset-table tr,
+      .dataset-table td {
+        display: block;
+        width: 100%;
+      }
+
+      .dataset-table tr {
+        padding: 16px 18px;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .dataset-table tr:last-child {
+        border-bottom: 0;
+      }
+
+      .dataset-table td {
+        display: grid;
+        grid-template-columns: 116px minmax(0, 1fr);
+        gap: 12px;
+        border-bottom: 0;
+        padding: 8px 0;
+        overflow-wrap: anywhere;
+      }
+
+      .dataset-table td::before {
+        color: var(--muted);
+        font: 800 11px/1.3 var(--mono);
+        text-transform: uppercase;
+      }
+
+      .dataset-table td:nth-child(1)::before { content: "Track"; }
+      .dataset-table td:nth-child(2)::before { content: "Dataset"; }
+      .dataset-table td:nth-child(3)::before { content: "Tasks"; }
+      .dataset-table td:nth-child(4)::before { content: "Categories"; }
+      .dataset-table td:nth-child(5)::before { content: "Best for"; }
+
+      .command-body {
+        padding: 18px;
+      }
+
+      .command-head {
+        gap: 12px;
+      }
+
+      .command-head span:last-child {
+        display: none;
+      }
+
+      .credit {
+        grid-template-columns: 1fr;
+        box-shadow: 8px 8px 0 rgba(35, 213, 124, .22);
+      }
+
+      .metric-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .leaderboard {
+        overflow-x: hidden;
+      }
+
+      .scoreboard table {
+        min-width: 0;
+      }
+
+      .scoreboard thead {
+        display: none;
+      }
+
+      .scoreboard tbody,
+      .scoreboard tr,
+      .scoreboard td {
+        display: block;
+        width: 100%;
+      }
+
+      .scoreboard tr {
+        padding: 16px 18px;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .scoreboard tr:last-child {
+        border-bottom: 0;
+      }
+
+      .scoreboard td {
+        display: grid;
+        grid-template-columns: 108px minmax(0, 1fr);
+        gap: 12px;
+        border-bottom: 0;
+        padding: 8px 0;
+      }
+
+      .scoreboard td::before {
+        color: var(--muted);
+        font: 800 11px/1.3 var(--mono);
+        text-transform: uppercase;
+      }
+
+      .scoreboard td:nth-child(1)::before { content: "Rank"; }
+      .scoreboard td:nth-child(2)::before { content: "Track"; }
+      .scoreboard td:nth-child(3)::before { content: "Agent"; }
+      .scoreboard td:nth-child(4)::before { content: "Harbor Job"; }
+      .scoreboard td:nth-child(5)::before { content: "Model"; }
+      .scoreboard td:nth-child(6)::before { content: "Reward"; }
+      .scoreboard td:nth-child(7)::before { content: "Runtime"; }
+
+      .submit-panel {
+        grid-template-columns: 1fr;
+      }
+
+      .modal-grid,
+      .timeline-grid,
+      .judging-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+      <div class="wrap nav-inner">
+        <div class="brand" aria-label="Novita x Harbor">
+          <svg class="novita-combine" viewBox="0 0 220.27 56" role="img" aria-label="Novita AI" xmlns="http://www.w3.org/2000/svg">
+            <title>Novita AI</title>
+            <g transform="scale(2.3333333333)">
+              <path clip-rule="evenodd" d="M9.167 4.17v5.665L0 19.003h9.167v-5.666l5.666 5.666H24L9.167 4.17z" fill="#23D57C" fill-rule="evenodd"></path>
+            </g>
+            <g transform="translate(70 8.4) scale(1.6333333333)">
+              <path clip-rule="evenodd" d="M68.236 18.3h5.11v3.228H69.29c-2.838 0-4.623-1.56-4.623-4.466V8.476h-2.892V5.22h2.892l.838-4.279h2.704v4.279h5.136v3.256h-5.11v9.822zM7.84 0l7.434 16.576h.217V0h3.865v21.528h-5.84L6.083 4.952h-.216v16.576H2V0h5.84zm21.438 21.851c-4.731 0-7.759-3.31-7.759-8.45 0-5.14 2.974-8.503 7.76-8.503 4.784 0 7.704 3.229 7.704 8.504 0 5.274-2.974 8.45-7.705 8.45zm0-3.229c2.11 0 3.866-.727 3.92-2.799V10.98c0-2.126-1.784-2.853-3.92-2.853s-3.974.727-3.974 2.853v4.843c.054 2.1 1.865 2.8 3.974 2.8zM41.12 5.194l4.217 12.916h.216L49.77 5.194h3.893L47.85 21.5h-4.813L37.252 5.194H41.12zm14.545.027h3.569v16.307h-3.57V5.221zM55.447 0h4.001v3.068h-4V0zm26.657 21.878c-4.353 0-7.137-3.31-7.137-8.476 0-5.167 2.73-8.477 7.137-8.477 2.055 0 3.731.807 4.732 2.314h.216l.703-2.018h2.703v16.307h-2.703l-.703-1.965h-.216c-1.082 1.426-2.893 2.314-4.732 2.314v.001zm.73-3.256c2.136 0 4-.673 4.054-2.799V10.98c0-2.18-1.947-2.8-4.135-2.8-2.19 0-4.001.674-4.001 2.8v4.843c.054 2.153 1.92 2.8 4.082 2.8z" fill="currentColor" fill-rule="evenodd"></path>
+            </g>
+          </svg>
+          <span class="brand-sep">×</span>
+          <span class="brand-harbor">Harbor</span>
+        </div>
+        <div class="nav-links" aria-label="Page navigation">
+        <a href="#board">Leaderboard</a>
+        <a href="#tracks">How + Tracks</a>
+        <a href="#submit">Submit</a>
+        <a href="#startup">Startup Program</a>
+        </div>
+      </div>
+  </nav>
+
+  <aside class="rail-nav" aria-label="Page quick navigation">
+    <a href="#board">Board</a>
+    <a href="#tracks">How</a>
+    <a href="#submit">Submit</a>
+    <a href="#startup">Startup</a>
+  </aside>
+
+  <main>
+    <section class="hero" id="top">
+      <div class="wrap hero-main">
+        <div class="hero-copy">
+          <div class="eyebrow"><span class="dot"></span>AI Agent Benchmark Challenge</div>
+          <h1><span>Evaluate your agent</span><span>on TB2.1 with</span><span>Novita Sandbox.</span></h1>
+          <p class="hero-lead">
+            Put your AI agent on public Terminal-Bench 2.1 tracks, submit a Harbor Hub run,
+            and compare performance on a live leaderboard for Novita credits.
+          </p>
+          <div class="hero-actions">
+            <a class="btn" href="#board">View leaderboard</a>
+            <a class="btn secondary" href="#tracks">Choose a track</a>
+            <button class="btn details-cta" type="button" data-open-details>Hackathon details</button>
+          </div>
+          <div class="hero-facts" aria-label="Challenge facts">
+            <div class="fact-card"><strong>4</strong><span>Public tracks</span></div>
+            <div class="fact-card"><strong>89</strong><span>TB2.1 tasks</span></div>
+            <div class="fact-card"><strong>$120</strong><span>Trial + LLM credits</span></div>
+            <div class="fact-card"><strong>Track winners</strong><span>$500 Sandbox + $200 LLM</span></div>
+          </div>
+        </div>
+
+        <aside class="hero-terminal" aria-label="Hackathon status summary">
+          <div class="hero-terminal-head">
+            <div class="window-dots" aria-hidden="true"><span></span><span></span><span></span></div>
+            <span>TB2.1 / Novita Sandbox</span>
+          </div>
+          <div class="hero-terminal-body">
+            <code class="code"><span class="accent">$</span> harbor run -d NovitaAI/tb21-file-recovery -a opencode -m deepseek/deepseek-v4-flash -e novita
+<span class="accent">$</span> harbor upload jobs/&lt;job_name&gt; --public</code>
+            <div class="metric-grid">
+              <div class="metric"><span>Tracks</span><strong>4</strong></div>
+              <div class="metric"><span>Tasks</span><strong>89</strong></div>
+              <div class="metric"><span>Trial + LLM</span><strong>$120</strong></div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="leaderboard-section" id="board">
+      <div class="wrap">
+        <div class="section-title">
+          <h2>Live leaderboard</h2>
+          <div class="live-copy">
+            <span class="live-badge"><span class="live-dot"></span>Public jobs only</span>
+            <p class="hint">Eligible entries must include public Harbor Hub jobs from TB2.1 agents running on Novita Sandbox.</p>
+          </div>
+        </div>
+
+        <div class="filters" aria-label="Leaderboard track filters">
+          <button class="filter active" type="button" data-track="All">All</button>
+          <button class="filter" type="button" data-track="Code & Debug">Code & Debug</button>
+          <button class="filter" type="button" data-track="Systems & Security">Systems & Security</button>
+          <button class="filter" type="button" data-track="Data & Science">Data & Science</button>
+          <button class="filter" type="button" data-track="File & Recovery">File & Recovery</button>
+          <button class="filter" type="button" data-track="Overall">Overall</button>
+        </div>
+
+        <div class="leaderboard scoreboard">
+          <table>
+            <thead>
+              <tr>
+                <th>Rank</th>
+                <th>Track</th>
+                <th>Agent</th>
+                <th>Harbor Job</th>
+                <th>Model</th>
+                <th>Reward</th>
+                <th>Runtime</th>
+              </tr>
+            </thead>
+            <tbody id="leaderboard-body">
+              <tr data-track="Code & Debug">
+                <td class="rank">01</td>
+                <td>Code & Debug</td>
+                <td><strong>OpenCode</strong></td>
+                <td><a class="job-link" href="https://hub.harborframework.com/jobs/2b32f9ad-a948-473d-8c76-dde10e90cb2d">View job</a></td>
+                <td>Kimi K2.5</td>
+                <td><span class="score">86.4</span></td>
+                <td>3m 12s</td>
+              </tr>
+              <tr data-track="Systems & Security">
+                <td class="rank">02</td>
+                <td>Systems & Security</td>
+                <td><strong>Baseline Agent</strong></td>
+                <td><span class="job-link pending">Pending</span></td>
+                <td>GPT-5.1</td>
+                <td><span class="score">74.1</span></td>
+                <td>24m 18s</td>
+              </tr>
+              <tr data-track="Data & Science">
+                <td class="rank">03</td>
+                <td>Data & Science</td>
+                <td><strong>Terminal Pro</strong></td>
+                <td><span class="job-link pending">Pending</span></td>
+                <td>Claude Sonnet</td>
+                <td><span class="score">69.8</span></td>
+                <td>22m 05s</td>
+              </tr>
+              <tr data-track="File & Recovery">
+                <td class="rank">04</td>
+                <td>File & Recovery</td>
+                <td><strong>FileOps Agent</strong></td>
+                <td><span class="job-link pending">Pending</span></td>
+                <td>Qwen Coder</td>
+                <td><span class="score">62.5</span></td>
+                <td>15m 07s</td>
+              </tr>
+              <tr data-track="Overall">
+                <td class="rank">Official</td>
+                <td>Overall</td>
+                <td><strong>Codex CLI</strong></td>
+                <td><a class="job-link" href="https://www.tbench.ai/leaderboard/terminal-bench/2.1">Official</a></td>
+                <td>GPT-5.5</td>
+                <td><span class="score">83.4%</span></td>
+                <td>TB2.1</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="tracks">
+      <div class="wrap">
+        <div class="track-copy">
+          <div>
+            <div class="eyebrow"><span class="dot"></span>Public track datasets</div>
+            <h1><span>TB2.1 Track</span><span>Datasets on</span><span>Novita Sandbox</span></h1>
+          </div>
+          <div class="steps-compact" aria-label="How it works">
+            <div class="step-mini"><strong>01</strong><span>Choose one public TB2.1 track dataset.</span></div>
+            <div class="step-mini"><strong>02</strong><span>Run your agent in Novita Sandbox.</span></div>
+            <div class="step-mini"><strong>03</strong><span>Upload and submit a public Harbor job.</span></div>
+          </div>
+        </div>
+
+        <div class="leaderboard dataset-table">
+          <table>
+            <thead>
+              <tr>
+                <th>Track</th>
+                <th>Dataset</th>
+                <th>Tasks</th>
+                <th>Mapped categories</th>
+                <th>Best for</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="rank">Code & Debug</td>
+                <td><a class="job-link" href="https://hub.harborframework.com/datasets/NovitaAI/tb21-code-debug/latest">Dataset</a></td>
+                <td>32</td>
+                <td>software-engineering + debugging</td>
+                <td>Coding agents, bug fixing, repository work</td>
+              </tr>
+              <tr>
+                <td class="rank">Systems & Security</td>
+                <td><a class="job-link" href="https://hub.harborframework.com/datasets/NovitaAI/tb21-systems-security/latest">Dataset</a></td>
+                <td>22</td>
+                <td>system-administration + security + mathematics</td>
+                <td>Shell ops, security tasks, crypto-analysis style math</td>
+              </tr>
+              <tr>
+                <td class="rank">Data & Science</td>
+                <td><a class="job-link" href="https://hub.harborframework.com/datasets/NovitaAI/tb21-data-science/latest">Dataset</a></td>
+                <td>26</td>
+                <td>data-science + scientific-computing + machine-learning + data-querying</td>
+                <td>Analysis, ML, computation, and query tasks</td>
+              </tr>
+              <tr>
+                <td class="rank">File & Recovery</td>
+                <td><a class="job-link" href="https://hub.harborframework.com/datasets/NovitaAI/tb21-file-recovery/latest">Dataset</a></td>
+                <td>9</td>
+                <td>file-operations</td>
+                <td>Filesystem tasks, recovery, extraction, transformation</td>
+              </tr>
+              <tr>
+                <td class="rank">Overall</td>
+                <td>Official TB2.1 leaderboard</td>
+                <td>89</td>
+                <td>All original categories</td>
+                <td><a class="job-link" href="https://www.tbench.ai/leaderboard/terminal-bench/2.1">Official</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="submit">
+      <div class="wrap">
+        <div class="section-title">
+          <h2>Run and submit</h2>
+          <p class="hint">Use the Harbor CLI, upload the public job, then paste the Harbor Hub link.</p>
+        </div>
+
+        <div class="submit-shell">
+          <aside class="command-card" aria-label="Participation command">
+            <div class="command-head">
+              <span>Run and upload</span>
+              <span>Harbor CLI</span>
+            </div>
+            <div class="command-body">
+              <div class="command-label">Example: choose one Novita track dataset, run it, then upload the public job.</div>
+              <code class="code"><span class="accent">$</span> harbor run \
+  -d NovitaAI/tb21-file-recovery \
+  -a opencode \
+  -m deepseek/deepseek-v4-flash \
+  -e novita
+
+<span class="accent">$</span> harbor upload jobs/&lt;job_name&gt; --public</code>
+            </div>
+          </aside>
+
+          <div>
+            <form class="submit-panel" id="job-form">
+              <input id="job-url" name="job-url" type="url" placeholder="https://hub.harborframework.com/jobs/2b32f9ad-a948-473d-8c76-dde10e90cb2d" required>
+              <button class="btn" type="submit">Add job link</button>
+              <div class="submit-note" id="submit-note">
+                Upload with harbor upload jobs/&lt;job_name&gt; --public, then paste the public Harbor Hub job link here.
+              </div>
+            </form>
+
+            <div class="points">
+              <div class="point">All datasets and tracks are public.</div>
+              <div class="point">Agents are self-selected by participants.</div>
+              <div class="point">Leaderboard entries must include a public Harbor Hub job link.</div>
+              <div class="point">Production parser verifies reward, runtime, tokens, track, and Novita Sandbox execution.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+
+    <section id="startup">
+      <div class="wrap">
+        <div class="program-card">
+          <div>
+            <h2>Startup Program</h2>
+            <p>
+              Building AI agents, devtools, evals, or sandbox-heavy products? Eligible AI-native startups can apply
+              for up to $10,000 in Novita cloud credits across Model APIs and Agent Sandbox.
+            </p>
+            <div class="dual-cta">
+              <button class="btn" type="button" data-open-startup>Learn more</button>
+              <button class="btn secondary" type="button" disabled aria-disabled="true">Apply form coming soon</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <dialog class="details-modal" id="details-modal" aria-labelledby="details-title">
+    <div class="modal-inner">
+      <div class="modal-head">
+        <div>
+          <h2 class="modal-title" id="details-title">Harbor Agent Benchmark</h2>
+          <p class="modal-kicker">Evaluate it. Compare it. Put your agent on the board.</p>
+        </div>
+        <button class="modal-close" type="button" data-close-details aria-label="Close details">×</button>
+      </div>
+
+      <div class="modal-callout">
+        Compete on public Terminal-Bench 2.1 tracks using Novita Sandbox as the shared execution environment.
+        Public Harbor Hub jobs are the source of truth for leaderboard eligibility.
+      </div>
+
+      <div class="modal-grid">
+        <section class="modal-panel" aria-label="What you will submit">
+          <h3>What you'll submit</h3>
+          <ul>
+            <li>Pick one of the four Novita TB2.1 track datasets.</li>
+            <li>Run your own agent in Novita Sandbox.</li>
+            <li>Upload the Harbor job publicly.</li>
+            <li>Submit the public Harbor Hub job link for review.</li>
+          </ul>
+        </section>
+
+        <section class="modal-panel" aria-label="Prize pool">
+          <h3>Prize pool</h3>
+          <div class="prize-list">
+            <div class="prize-item"><span>Each track winner</span><strong>$500 Sandbox + $200 LLM</strong></div>
+            <div class="prize-item"><span>Trial credits</span><strong>$100 free trial + $20 LLM application</strong></div>
+            <div class="prize-item"><span>Community reports</span><strong>$20-$50</strong></div>
+            <div class="prize-item"><span>Startup Program</span><strong>Up to $10k</strong></div>
+          </div>
+        </section>
+      </div>
+
+      <section class="timeline" aria-label="Challenge timeline">
+        <h3>Challenge flow</h3>
+        <div class="timeline-grid">
+          <div class="timeline-card"><strong>Build & run</strong><span>Select a track and run your agent on Novita Sandbox.</span></div>
+          <div class="timeline-card"><strong>Submit job</strong><span>Upload publicly to Harbor Hub and paste the job link.</span></div>
+          <div class="timeline-card"><strong>Review & rank</strong><span>Eligible public jobs are parsed and ranked on the leaderboard.</span></div>
+        </div>
+      </section>
+
+      <div class="modal-grid">
+        <section class="modal-panel" aria-label="How you are judged">
+          <h3>How you're judged</h3>
+          <div class="judging-grid">
+            <div class="judging-card"><strong>100%</strong><span>Harbor framework score from the submitted public job.</span></div>
+            <div class="judging-card"><strong>Required</strong><span>The job must be public and run on the matching Novita TB2.1 dataset.</span></div>
+          </div>
+        </section>
+
+        <section class="modal-panel" aria-label="Why join">
+          <h3>Why join?</h3>
+          <ul>
+            <li>Compare your agent on public TB2.1 tracks.</li>
+            <li>Test real sandbox execution instead of a local-only demo.</li>
+            <li>Earn Novita credits for strong runs and useful reports.</li>
+          </ul>
+        </section>
+      </div>
+
+      <div class="modal-actions">
+        <a class="btn" href="https://discord.gg/dTVYXBvMP6" target="_blank" rel="noreferrer">Join via Discord</a>
+        <button class="btn secondary" type="button" disabled aria-disabled="true">$20 LLM credits application coming soon</button>
+        <a class="btn secondary" href="#tracks">Choose a track</a>
+        <a class="btn secondary" href="#submit">Submit Harbor job</a>
+      </div>
+    </div>
+  </dialog>
+
+  <dialog class="details-modal" id="startup-modal" aria-labelledby="startup-title">
+    <div class="modal-inner">
+      <div class="modal-head">
+        <div>
+          <h2 class="modal-title" id="startup-title">Novita Startup Program</h2>
+          <p class="modal-kicker">Up to $10,000 in cloud credits for AI-native startups.</p>
+        </div>
+        <button class="modal-close" type="button" data-close-startup aria-label="Close startup details">×</button>
+      </div>
+
+      <div class="modal-callout">
+        For venture-backed startups building with Model APIs, Agent Sandbox, AI agents, evals,
+        devtools, or compute-heavy AI products.
+      </div>
+
+      <div class="modal-grid">
+        <section class="modal-panel" aria-label="Credit journey">
+          <h3>Credit journey</h3>
+          <ul>
+            <li>Start with up to $1,000 in cloud credits, typically $500.</li>
+            <li>Cover usage across Model APIs and Agent Sandbox.</li>
+            <li>After initial allocation, Novita covers 25% of ongoing usage up to another $5,000.</li>
+            <li>Provide up to $4,000 in credits when the startup becomes L3.</li>
+          </ul>
+        </section>
+
+        <section class="modal-panel" aria-label="What credits cover">
+          <h3>What credits cover</h3>
+          <div class="prize-list">
+            <div class="prize-item"><span>Model APIs</span><strong>LLM / image / video / voice</strong></div>
+            <div class="prize-item"><span>Agent Sandbox</span><strong>Execution credits</strong></div>
+            <div class="prize-item"><span>Ongoing usage</span><strong>25% covered</strong></div>
+            <div class="prize-item"><span>Max allocation</span><strong>$10,000</strong></div>
+          </div>
+        </section>
+      </div>
+
+      <div class="modal-grid">
+        <section class="modal-panel" aria-label="Eligibility criteria">
+          <h3>Eligibility</h3>
+          <ul>
+            <li>Series B or earlier, with latest round within the last 12 months.</li>
+            <li>AI-native business where AI is core to the product.</li>
+            <li>Participating in or completed other startup programs.</li>
+            <li>Current providers, monthly spend, team, backing VCs, and traction are reviewed.</li>
+            <li>Ideally familiar with OpenAI costs and total Novita AI spend is $1,000 or less.</li>
+          </ul>
+        </section>
+
+        <section class="modal-panel" aria-label="Program goal">
+          <h3>Program goal</h3>
+          <ul>
+            <li>Support 10-20 startups with up to $10,000 each.</li>
+            <li>Average expected allocation is around $5,000 per company.</li>
+            <li>Total program budget target is $150,000.</li>
+            <li>Designed to identify serious L5+ customer potential.</li>
+          </ul>
+        </section>
+      </div>
+
+      <div class="modal-actions">
+        <button class="btn" type="button" disabled aria-disabled="true">Apply form coming soon</button>
+        <a class="btn secondary" href="mailto:devrel@novita.ai?subject=Novita%20Startup%20Program">Contact Novita</a>
+      </div>
+    </div>
+  </dialog>
+
+  <footer>
+    <div class="wrap">Terminal-Bench 2.1 · Novita Sandbox execution · Harbor Hub job links · live public leaderboard</div>
+  </footer>
+  <script>
+    const form = document.querySelector("#job-form");
+    const input = document.querySelector("#job-url");
+    const note = document.querySelector("#submit-note");
+    const body = document.querySelector("#leaderboard-body");
+    const filters = document.querySelectorAll(".filter");
+    const detailsModal = document.querySelector("#details-modal");
+    const openDetails = document.querySelector("[data-open-details]");
+    const closeDetails = document.querySelector("[data-close-details]");
+    const startupModal = document.querySelector("#startup-modal");
+    const openStartup = document.querySelector("[data-open-startup]");
+    const closeStartup = document.querySelector("[data-close-startup]");
+    const activeFilter = () => document.querySelector(".filter.active")?.dataset.track || "All";
+
+    function escapeHtml(value) {
+      return String(value).replace(/[&<>"']/g, (char) => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;"
+      }[char]));
+    }
+
+    function renderRows(rows) {
+      body.innerHTML = rows.map((row) => {
+        const isPending = !row.jobUrl;
+        const link = isPending
+          ? `<span class="job-link pending">${escapeHtml(row.label || "Pending")}</span>`
+          : `<a class="job-link" href="${escapeHtml(row.jobUrl)}" target="_blank" rel="noreferrer">${escapeHtml(row.label || "View job")}</a>`;
+
+        return `
+          <tr data-track="${escapeHtml(row.track)}">
+            <td class="rank">${escapeHtml(row.rank)}</td>
+            <td>${escapeHtml(row.track)}</td>
+            <td><strong>${escapeHtml(row.agent)}</strong></td>
+            <td>${link}</td>
+            <td>${escapeHtml(row.model)}</td>
+            <td><span class="score">${escapeHtml(row.reward)}</span></td>
+            <td>${escapeHtml(row.runtime)}</td>
+          </tr>
+        `;
+      }).join("");
+      applyFilter(activeFilter());
+    }
+
+    async function loadLeaderboard() {
+      try {
+        const response = await fetch("/api/leaderboard", { cache: "no-store" });
+        if (!response.ok) {
+          throw new Error("Unable to load leaderboard");
+        }
+        const data = await response.json();
+        renderRows(data.rows || []);
+        if (data.warning) {
+          note.textContent = data.warning;
+        }
+      } catch (error) {
+        note.textContent = error.message;
+      }
+    }
+
+    function applyFilter(track) {
+      body.querySelectorAll("tr").forEach((row) => {
+        row.style.display = track === "All" || row.dataset.track === track ? "" : "none";
+      });
+    }
+
+    filters.forEach((button) => {
+      button.addEventListener("click", () => {
+        filters.forEach((item) => item.classList.remove("active"));
+        button.classList.add("active");
+        applyFilter(button.dataset.track);
+      });
+    });
+
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const url = input.value.trim();
+      note.textContent = "Submitting job link...";
+
+      fetch("/api/submit-job", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ jobUrl: url })
+      })
+        .then(async (response) => {
+          const data = await response.json();
+          if (!response.ok) {
+            throw new Error(data.error || "Unable to submit job");
+          }
+          input.value = "";
+          filters.forEach((item) => item.classList.remove("active"));
+          document.querySelector('.filter[data-track="All"]').classList.add("active");
+          note.textContent = "Job submitted. It is visible on the leaderboard as pending review.";
+          return loadLeaderboard();
+        })
+        .catch((error) => {
+          note.textContent = error.message;
+        });
+    });
+
+    openDetails?.addEventListener("click", () => {
+      if (typeof detailsModal.showModal === "function") {
+        detailsModal.showModal();
+      }
+    });
+
+    closeDetails?.addEventListener("click", () => {
+      detailsModal.close();
+    });
+
+    detailsModal?.addEventListener("click", (event) => {
+      if (event.target === detailsModal) {
+        detailsModal.close();
+      }
+    });
+
+    openStartup?.addEventListener("click", () => {
+      if (typeof startupModal.showModal === "function") {
+        startupModal.showModal();
+      }
+    });
+
+    closeStartup?.addEventListener("click", () => {
+      startupModal.close();
+    });
+
+    startupModal?.addEventListener("click", (event) => {
+      if (event.target === startupModal) {
+        startupModal.close();
+      }
+    });
+
+    loadLeaderboard();
+  </script>
+</body>
+</html>

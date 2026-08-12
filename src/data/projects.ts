@@ -65,8 +65,8 @@ export const projects: Project[] = [
         type: "github",
       },
       {
-        label: "Live site",
-        href: "https://awesome-hermes-tutorial.vercel.app",
+        label: "Open work",
+        href: "/work/hermes",
         type: "website",
       },
     ],

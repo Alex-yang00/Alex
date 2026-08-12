@@ -53,7 +53,12 @@ export function ProjectCard({ project }: ProjectCardProps) {
             const Icon = icons[link.type ?? "website"];
 
             return (
-              <a key={`${project.name}-${link.href}`} href={link.href} target="_blank" rel="noreferrer">
+              <a
+                key={`${project.name}-${link.href}`}
+                href={link.href}
+                target={link.href.startsWith("/") ? undefined : "_blank"}
+                rel={link.href.startsWith("/") ? undefined : "noreferrer"}
+              >
                 <Icon aria-hidden="true" />
                 {link.label}
               </a>

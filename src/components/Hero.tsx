@@ -1,4 +1,4 @@
-import { FileText, Github, Mail } from "lucide-react";
+import { FileText, Github, Images, Mail } from "lucide-react";
 import { profile } from "../data/profile";
 
 export function Hero() {
@@ -37,6 +37,10 @@ export function Hero() {
         <a href={profile.socials.resume} aria-label="Resume" target="_blank" rel="noreferrer" className="action-pill">
           <FileText aria-hidden="true" />
           Resume
+        </a>
+        <a href="/projects" className="action-pill">
+          <Images aria-hidden="true" />
+          Projects
         </a>
       </div>
     </>

@@ -4,14 +4,20 @@ import { useActiveSection } from "../hooks/useActiveSection";
 import { useTheme } from "../hooks/useTheme";
 
 const navItems = [
-  { id: "home", label: "Home" },
-  { id: "work", label: "Work" },
-  { id: "experience", label: "Experience" },
-  { id: "contact", label: "Contact" },
+  { id: "home", label: "Home", href: "/" },
+  { id: "work", label: "Work", href: "/#work" },
+  { id: "gallery", label: "Projects", href: "/projects" },
+  { id: "experience", label: "Experience", href: "/#experience" },
+  { id: "contact", label: "Contact", href: "/#contact" },
 ];
 
-export function Nav() {
-  const activeSection = useActiveSection(navItems.map((item) => item.id));
+type NavProps = {
+  currentPage?: "home" | "gallery";
+};
+
+export function Nav({ currentPage = "home" }: NavProps) {
+  const sectionItems = navItems.filter((item) => item.id !== "gallery");
+  const activeSection = useActiveSection(sectionItems.map((item) => item.id));
   const { theme, toggleTheme } = useTheme();
   const [scrolled, setScrolled] = useState(false);
 
@@ -35,8 +41,10 @@ export function Nav() {
           {navItems.map((item) => (
             <a
               key={item.id}
-              href={`#${item.id}`}
-              className={activeSection === item.id ? "active" : undefined}
+              href={item.href}
+              className={currentPage === "gallery"
+                ? item.id === "gallery" ? "active" : undefined
+                : activeSection === item.id ? "active" : undefined}
             >
               {item.label}
             </a>

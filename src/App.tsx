@@ -4,6 +4,7 @@ import { ContactFooter } from "./components/ContactFooter";
 import { ExperienceTimeline } from "./components/ExperienceTimeline";
 import { Hero } from "./components/Hero";
 import { Highlights } from "./components/Highlights";
+import { GalleryPage } from "./components/GalleryPage";
 import { Nav } from "./components/Nav";
 import { Projects } from "./components/Projects";
 import { ResumePage } from "./components/ResumePage";
@@ -12,12 +13,22 @@ import { useReveal } from "./hooks/useReveal";
 
 export function App() {
   const isResumePage = window.location.pathname === "/resume";
+  const isGalleryPage = window.location.pathname === "/gallery" || window.location.pathname === "/projects";
   useReveal();
 
   if (isResumePage) {
     return (
       <>
         <ResumePage />
+        <Analytics />
+      </>
+    );
+  }
+
+  if (isGalleryPage) {
+    return (
+      <>
+        <GalleryPage />
         <Analytics />
       </>
     );
@@ -37,12 +48,12 @@ export function App() {
             <Highlights />
           </Section>
 
-          <Section title="Projects" id="work">
-            <Projects />
-          </Section>
-
           <Section title="Experience" id="experience">
             <ExperienceTimeline />
+          </Section>
+
+          <Section title="Selected Work" id="work">
+            <Projects compact />
           </Section>
 
           <ContactFooter />

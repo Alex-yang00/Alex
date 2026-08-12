@@ -1,0 +1,740 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Novita Startup Program</title>
+    <meta
+      name="description"
+      content="Novita Startup Program provides venture-backed AI startups up to $10,000 in credits across model APIs and agent sandbox."
+    />
+    <link rel="icon" media="(prefers-color-scheme: light)" href="/work-original/startup/assets/favicon.ico" />
+    <link rel="icon" media="(prefers-color-scheme: dark)" href="/work-original/startup/assets/favicon-dark.ico" />
+    <style>
+      :root {
+        --bg: #f7f7f3;
+        --surface: #ffffff;
+        --surface-warm: #fbfaf6;
+        --ink: #080808;
+        --text: #171717;
+        --text-2: #474747;
+        --text-3: #747474;
+        --line: rgba(8, 8, 8, 0.11);
+        --line-soft: rgba(8, 8, 8, 0.07);
+        --green: #23d57c;
+        --green-deep: #0d8d4f;
+        --green-soft: #eaf9f0;
+        --blue-soft: #edf4ff;
+        --violet-soft: #f2efff;
+        --radius-8: 8px;
+        --radius-12: 12px;
+        --radius-full: 999px;
+        --shadow: 0 24px 70px rgba(8, 8, 8, 0.08);
+        --font-body: Inter, "Aptos", "Segoe UI", sans-serif;
+        --font-mono: "SFMono-Regular", "Cascadia Mono", "Roboto Mono", monospace;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+        overflow-x: hidden;
+      }
+
+      body {
+        margin: 0;
+        background:
+          linear-gradient(180deg, #fbfbf8 0, var(--bg) 520px, #ffffff 100%);
+        color: var(--text);
+        font-family: var(--font-body);
+        font-size: 16px;
+        line-height: 1.5;
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .container {
+        width: min(1180px, calc(100% - 48px));
+        margin: 0 auto;
+      }
+
+      .mono,
+      .eyebrow,
+      .chip,
+      .nav,
+      .stat-label,
+      .metric-label,
+      .console-label {
+        font-family: var(--font-mono);
+        font-size: 12px;
+        line-height: 1;
+        letter-spacing: 0.52px;
+        text-transform: uppercase;
+      }
+
+      .header {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        border-bottom: 1px solid var(--line-soft);
+        background: rgba(251, 251, 248, 0.82);
+        backdrop-filter: blur(22px);
+      }
+
+      .header-inner {
+        display: flex;
+        min-height: 76px;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+      }
+
+      .logo {
+        display: inline-flex;
+        align-items: center;
+      }
+
+      .logo img {
+        display: block;
+        width: 88px;
+        height: 24px;
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
+        gap: 26px;
+        color: var(--text-2);
+      }
+
+      .nav a:not(.btn) {
+        transition: color 180ms ease;
+      }
+
+      .nav a:not(.btn):hover {
+        color: var(--ink);
+      }
+
+      .btn {
+        display: inline-flex;
+        min-height: 46px;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid var(--ink);
+        border-radius: var(--radius-full);
+        padding: 0 22px;
+        background: var(--ink);
+        color: #ffffff;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 520;
+        line-height: 20px;
+        transition: background 180ms ease, border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+        white-space: nowrap;
+      }
+
+      .btn:hover,
+      .btn:focus-visible {
+        background: #252525;
+        border-color: #252525;
+        box-shadow: 0 12px 30px rgba(8, 8, 8, 0.16);
+        transform: translateY(-1px);
+      }
+
+      .btn.secondary {
+        border-color: var(--line);
+        background: rgba(255, 255, 255, 0.62);
+        color: var(--text);
+      }
+
+      .btn.secondary:hover,
+      .btn.secondary:focus-visible {
+        border-color: rgba(8, 8, 8, 0.18);
+        background: #ffffff;
+      }
+
+      .hero {
+        position: relative;
+        min-height: min(760px, calc(100svh - 76px));
+        overflow: hidden;
+        padding: 132px 0 104px;
+        background: #f7f8f5;
+        isolation: isolate;
+      }
+
+      .hero::before {
+        position: absolute;
+        inset: 0;
+        z-index: -2;
+        background: url("/work-original/startup/assets/novita-home-hero-bg.png") center right 14% / auto 94% no-repeat;
+        content: "";
+        mask-image:
+          linear-gradient(90deg, transparent 0%, #000 18%, #000 86%, transparent 100%),
+          linear-gradient(180deg, transparent 0%, #000 8%, #000 78%, transparent 100%);
+        mask-composite: intersect;
+        -webkit-mask-image:
+          linear-gradient(90deg, transparent 0%, #000 18%, #000 86%, transparent 100%),
+          linear-gradient(180deg, transparent 0%, #000 8%, #000 78%, transparent 100%);
+        -webkit-mask-composite: source-in;
+      }
+
+      .hero::after {
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        background:
+          radial-gradient(circle at 98% 30%, rgba(247, 248, 245, 0.72) 0%, rgba(247, 248, 245, 0.46) 18%, rgba(247, 248, 245, 0) 42%),
+          linear-gradient(90deg, rgba(247, 248, 245, 0.99) 0%, rgba(247, 248, 245, 0.88) 30%, rgba(247, 248, 245, 0.22) 58%, rgba(247, 248, 245, 0.08) 100%),
+          linear-gradient(180deg, rgba(247, 248, 245, 0) 74%, #f7f7f3 100%);
+        content: "";
+        pointer-events: none;
+      }
+
+      .hero-grid {
+        position: relative;
+        display: block;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--text-3);
+      }
+
+      .section .eyebrow {
+        display: block;
+        color: var(--text-3);
+        letter-spacing: 0.72px;
+      }
+
+      .hero .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--text-2);
+        border: 1px solid var(--line-soft);
+        border-radius: var(--radius-full);
+        padding: 10px 13px;
+        background: rgba(255, 255, 255, 0.72);
+        box-shadow: 0 1px 0 rgba(255, 255, 255, 0.7) inset;
+      }
+
+      .dot {
+        width: 8px;
+        height: 8px;
+        border-radius: var(--radius-full);
+        background: var(--green);
+        box-shadow: 0 0 0 5px rgba(35, 213, 124, 0.12);
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin: 0;
+      }
+
+      h1 {
+        max-width: 620px;
+        margin-top: 24px;
+        color: var(--ink);
+        font-size: clamp(56px, 6.3vw, 88px);
+        font-weight: 560;
+        line-height: 0.97;
+      }
+
+      .hero-copy {
+        max-width: 430px;
+        margin-top: 26px;
+        color: var(--text-2);
+        font-size: clamp(18px, 1.7vw, 21px);
+        line-height: 1.34;
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 34px;
+      }
+
+      .hero-stats {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 18px;
+        max-width: 640px;
+        margin-top: 54px;
+        padding-top: 24px;
+        border-top: 1px solid var(--line-soft);
+      }
+
+      .stat-value {
+        color: var(--ink);
+        font-size: 28px;
+        font-weight: 560;
+        line-height: 1;
+      }
+
+      .stat-label {
+        margin-top: 10px;
+        color: var(--text-3);
+        line-height: 1.35;
+      }
+
+      .card,
+      .apply-box {
+        border: 1px solid var(--line-soft);
+        border-radius: var(--radius-12);
+        background: var(--surface);
+      }
+
+      .section {
+        padding: 92px 0;
+        border-top: 1px solid var(--line-soft);
+        scroll-margin-top: 80px;
+      }
+
+      .section-head {
+        display: grid;
+        grid-template-columns: 0.28fr 0.72fr;
+        gap: 48px;
+        margin-bottom: 36px;
+      }
+
+      h2 {
+        max-width: 760px;
+        color: var(--ink);
+        font-size: clamp(34px, 4.2vw, 52px);
+        font-weight: 520;
+        line-height: 1.04;
+      }
+
+      .lead {
+        max-width: 700px;
+        margin-top: 16px;
+        color: var(--text-2);
+        font-size: 18px;
+        line-height: 1.5;
+      }
+
+      .grid-2 {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .card {
+        min-height: 226px;
+        padding: 30px;
+        transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+      }
+
+      .card:hover {
+        border-color: rgba(8, 8, 8, 0.15);
+        box-shadow: 0 18px 42px rgba(8, 8, 8, 0.06);
+        transform: translateY(-2px);
+      }
+
+      .card h3 {
+        margin-top: 44px;
+        color: var(--ink);
+        font-size: 24px;
+        font-weight: 520;
+        line-height: 1.22;
+      }
+
+      .card p {
+        margin-top: 12px;
+        color: var(--text-3);
+      }
+
+      .included-grid {
+        display: grid;
+        grid-template-columns: 1.08fr 0.92fr 0.92fr;
+        gap: 14px;
+      }
+
+      .included-main {
+        grid-row: span 2;
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.58), rgba(255, 255, 255, 0)),
+          var(--green-soft);
+      }
+
+      .included-main .chip {
+        color: var(--green-deep);
+      }
+
+      .included-main h3 {
+        max-width: 420px;
+        font-size: clamp(42px, 5vw, 62px);
+        line-height: 1;
+      }
+
+      .included-main p {
+        max-width: 340px;
+        font-size: 18px;
+      }
+
+      .card-accent-blue {
+        background: linear-gradient(180deg, #ffffff, var(--blue-soft));
+      }
+
+      .card-accent-violet {
+        background: linear-gradient(180deg, #ffffff, var(--violet-soft));
+      }
+
+      .chip {
+        display: inline-flex;
+        min-height: 25px;
+        align-items: center;
+        border-bottom: 1px solid var(--line);
+        padding: 0 0 7px;
+        background: transparent;
+        color: var(--text-3);
+      }
+
+      .list {
+        display: grid;
+        gap: 16px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .list li {
+        display: grid;
+        grid-template-columns: 24px 1fr;
+        gap: 12px;
+        color: var(--text-2);
+      }
+
+      .check {
+        display: grid;
+        width: 22px;
+        height: 22px;
+        place-items: center;
+        border-radius: 999px;
+        background: var(--green-soft);
+        color: var(--green-deep);
+        font-family: var(--font-mono);
+        font-size: 12px;
+      }
+
+      .eligibility-card {
+        min-height: auto;
+      }
+
+      .eligibility-card h3 {
+        margin-top: 30px;
+      }
+
+      .apply-box {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 32px;
+        align-items: end;
+        padding: 40px;
+        background: var(--green-soft);
+      }
+
+      .faq {
+        display: grid;
+        gap: 12px;
+      }
+
+      .faq-item {
+        border: 1px solid var(--line-soft);
+        border-radius: var(--radius-8);
+        background: var(--surface);
+        overflow: hidden;
+      }
+
+      .faq-item summary {
+        display: grid;
+        grid-template-columns: 1fr 28px;
+        gap: 20px;
+        align-items: center;
+        min-height: 74px;
+        padding: 22px 24px;
+        cursor: pointer;
+        color: var(--ink);
+        font-size: 20px;
+        font-weight: 520;
+        line-height: 1.3;
+        list-style: none;
+      }
+
+      .faq-item summary::-webkit-details-marker {
+        display: none;
+      }
+
+      .faq-item summary::after {
+        display: grid;
+        width: 28px;
+        height: 28px;
+        place-items: center;
+        border-radius: var(--radius-full);
+        background: var(--surface-warm);
+        color: var(--text-2);
+        content: "+";
+        font-family: var(--font-mono);
+        font-size: 14px;
+      }
+
+      .faq-item[open] summary::after {
+        content: "-";
+      }
+
+      .faq-item p {
+        margin: 0;
+        max-width: 900px;
+        padding: 0 24px 24px;
+        color: var(--text-3);
+      }
+
+      .footer {
+        border-top: 1px solid var(--line-soft);
+        padding: 30px 0;
+        color: var(--text-3);
+        background: #ffffff;
+      }
+
+      @media (max-width: 980px) {
+        .included-grid,
+        .section-head,
+        .apply-box {
+          grid-template-columns: 1fr;
+        }
+
+        .hero {
+          min-height: 720px;
+          padding-bottom: 340px;
+        }
+
+        .hero::before {
+          background: url("/work-original/startup/assets/novita-home-hero-bg.png") center bottom / 980px auto no-repeat;
+          mask-image:
+            linear-gradient(90deg, transparent 0%, #000 12%, #000 88%, transparent 100%),
+            linear-gradient(180deg, transparent 0%, #000 36%, #000 84%, transparent 100%);
+          -webkit-mask-image:
+            linear-gradient(90deg, transparent 0%, #000 12%, #000 88%, transparent 100%),
+            linear-gradient(180deg, transparent 0%, #000 36%, #000 84%, transparent 100%);
+        }
+
+        .hero::after {
+          background:
+            linear-gradient(180deg, rgba(247, 248, 245, 0.99) 0%, rgba(247, 248, 245, 0.9) 39%, rgba(247, 248, 245, 0.12) 67%, rgba(247, 248, 245, 0) 88%),
+            linear-gradient(180deg, rgba(247, 248, 245, 0) 74%, #f7f7f3 100%);
+        }
+
+        .included-main {
+          grid-row: auto;
+        }
+      }
+
+      @media (max-width: 720px) {
+        .container {
+          width: min(100% - 28px, 1180px);
+        }
+
+        .header-inner {
+          min-height: 68px;
+        }
+
+        .nav {
+          gap: 12px;
+        }
+
+        .nav a:not(.btn) {
+          display: none;
+        }
+
+        .hero {
+          min-height: 690px;
+          padding: 54px 0 310px;
+        }
+
+        .hero::before {
+          background: url("/work-original/startup/assets/novita-home-hero-bg.png") 54% bottom / 540px auto no-repeat;
+        }
+
+        .hero::after {
+          background:
+            linear-gradient(180deg, rgba(247, 248, 245, 0.99) 0%, rgba(247, 248, 245, 0.94) 43%, rgba(247, 248, 245, 0.08) 70%, rgba(247, 248, 245, 0) 88%),
+            linear-gradient(180deg, rgba(247, 248, 245, 0) 74%, #f7f7f3 100%);
+        }
+
+        h1 {
+          max-width: 360px;
+          font-size: clamp(50px, 14vw, 66px);
+        }
+
+        .hero-copy {
+          max-width: 340px;
+          font-size: 19px;
+          overflow-wrap: anywhere;
+        }
+
+        .hero-stats,
+        .grid-2 {
+          grid-template-columns: 1fr;
+        }
+
+        .hero-stats {
+          gap: 16px;
+          margin-top: 38px;
+        }
+
+        .section {
+          padding: 62px 0;
+        }
+
+        .card,
+        .apply-box {
+          padding: 24px;
+        }
+
+        .card h3 {
+          margin-top: 34px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <div class="container header-inner">
+        <a class="logo" href="https://novita.ai" target="_blank" rel="noopener" aria-label="Novita AI homepage">
+          <img src="/work-original/startup/assets/novita-logo.svg" width="88" height="24" alt="Novita" />
+        </a>
+        <nav class="nav" aria-label="Primary navigation">
+          <a href="#benefits">Benefits</a>
+          <a href="#eligibility">Eligibility</a>
+          <a href="#faq">FAQ</a>
+          <a class="btn" href="https://docs.google.com/forms/d/e/1FAIpQLSfU4-JTNobsrS24ZuTu6aGqN7nZxFgVFJc8JCQH7tAy624P4Q/viewform" target="_blank" rel="noopener">Apply</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="container hero-grid">
+          <div>
+            <div class="eyebrow"><span class="dot"></span>Startup Program</div>
+            <h1>Novita AI for Startups</h1>
+            <p class="hero-copy">Build with Novita Model APIs and Agent Sandbox.</p>
+            <div class="hero-actions">
+              <a class="btn" href="https://docs.google.com/forms/d/e/1FAIpQLSfU4-JTNobsrS24ZuTu6aGqN7nZxFgVFJc8JCQH7tAy624P4Q/viewform" target="_blank" rel="noopener">Apply</a>
+              <a class="btn secondary" href="#benefits">Benefits</a>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <section class="section" id="benefits">
+        <div class="container">
+          <div class="section-head">
+            <div class="eyebrow">Benefits</div>
+          </div>
+          <div class="included-grid">
+            <article class="card included-main">
+              <span class="chip">Startup credits</span>
+              <h3>Up to $10,000 in usage credits</h3>
+              <p>For eligible startups building on Novita AI.</p>
+            </article>
+            <article class="card card-accent-blue">
+              <span class="chip">Model APIs</span>
+              <h3>LLM, image, video, voice, and more</h3>
+              <p>One platform for core AI product workflows.</p>
+            </article>
+            <article class="card card-accent-violet">
+              <span class="chip">Agent Sandbox</span>
+              <h3>Secure environments for agent workflows</h3>
+              <p>Give agents isolated space to execute tasks.</p>
+            </article>
+            <article class="card">
+              <span class="chip">Marketing</span>
+              <h3>Spotlight your story across Novita channels</h3>
+              <p>X / LinkedIn / Discord / Newsletter</p>
+            </article>
+            <article class="card">
+              <span class="chip">Customer Success</span>
+              <h3>Dedicated support from Novita engineers</h3>
+              <p>On Slack or a platform of your choice</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="eligibility">
+        <div class="container">
+          <div class="section-head">
+            <div class="eyebrow">Eligibility</div>
+            <div>
+              <h2>Who should apply</h2>
+            </div>
+          </div>
+          <div class="grid-2">
+            <article class="card eligibility-card">
+              <span class="chip">Criteria</span>
+              <h3>Baseline criteria</h3>
+              <ul class="list" style="margin-top: 18px;">
+                <li><span class="check">✓</span><span>Venture-backed and Series B or earlier.</span></li>
+                <li><span class="check">✓</span><span>AI-native product or platform.</span></li>
+                <li><span class="check">✓</span><span>New Novita user.</span></li>
+              </ul>
+            </article>
+            <article class="card eligibility-card">
+              <span class="chip">Signals</span>
+              <h3>What helps your application</h3>
+              <ul class="list" style="margin-top: 18px;">
+                <li><span class="check">✓</span><span>Agent sandbox usage and spend.</span></li>
+                <li><span class="check">✓</span><span>Funding and revenue.</span></li>
+                <li><span class="check">✓</span><span>Notable VC or investors on your cap table.</span></li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="faq">
+        <div class="container">
+          <div class="section-head">
+            <div class="eyebrow">FAQ</div>
+            <div>
+              <h2>Common questions</h2>
+            </div>
+          </div>
+          <div class="faq">
+            <details class="faq-item">
+              <summary>Is there a detailed breakdown of the credits?</summary>
+              <p>Eligible startups can receive up to $10,000 in credits across Novita AI's Model APIs and Agent Sandbox. The program provides up to $1,000 in credits upfront. The next $5,000 is matched at a 1:1 ratio, every dollar spent earns one dollar in credit. For the final $4,000, every two dollars spent earns one dollar in credit. These credits can be redeemed for one year.</p>
+            </details>
+            <details class="faq-item">
+              <summary>What products are covered?</summary>
+              <p>Credits are split across Novita AI's startup products: up to $5,000 for Agent Sandbox usage and up to $5,000 for Model API usage.</p>
+            </details>
+            <details class="faq-item">
+              <summary>How are credits approved?</summary>
+              <p>Novita reviews stage, team, current spend, backing, traction, and expected Model API or Agent Sandbox usage.</p>
+            </details>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="footer">
+      <div class="container mono">Novita AI / Startup Program</div>
+    </footer>
+  </body>
+</html>

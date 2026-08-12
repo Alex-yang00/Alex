@@ -1,0 +1,71 @@
+<section class="slide split" data-layout="S03" data-animate="split-statement">
+  <div class="canvas-card"><div class="split-half">
+    <div class="half b-ink workshop-ready" style="padding:5.6vh 3.6vw 4.4vh;justify-content:space-between">
+      <div class="chrome-min"><div class="l">TECH WORKSHOP · SETUP</div><div class="r">01 / 04</div></div>
+      <div data-anim="manifesto"><div class="t-meta">BEFORE WE START</div><h1 style="font-weight:200;font-size:min(7.2vw,12.6vh);line-height:.94">OpenCode<br/>is ready</h1></div>
+      <div class="workshop-checks">
+        <div><i data-lucide="monitor-check"></i><span>GUI</span><strong>OpenCode installed</strong></div>
+        <div><i data-lucide="terminal"></i><span>CLI</span><strong><code>opencode --version</code></strong></div>
+        <div><i data-lucide="cpu"></i><span>MODEL</span><strong>Novita · GLM-5.2 ready</strong></div>
+      </div>
+    </div>
+    <div class="half b-grey workshop-visual" style="padding:5.6vh 3.6vw 4.4vh;justify-content:space-between">
+      <div class="chrome-min"><div class="l">IMAGE SLOT</div><div class="r">16:10</div></div>
+      <figure class="workshop-image-slot" data-image-slot="s03-novita-ready-16x10">
+        <div class="slot-corner">01</div>
+        <i data-lucide="image-plus"></i>
+        <strong>NOVITA CONNECTION SCREENSHOT</strong>
+        <span>OpenCode model selector · GLM-5.2 ready</span>
+        <code>images/01-novita-ready.png</code>
+      </figure>
+      <div class="t-meta">NO SETUP WALKTHROUGH · SHOW READY STATE ONLY</div>
+    </div>
+  </div></div>
+</section>
+
+<section class="slide dark" data-layout="S21" data-animate="tech-spec">
+  <div class="canvas-card">
+    <div class="chrome-min"><div class="l">STEP 02 · CONFIGURE ACTIONLAYER</div><div class="r">02 / 04</div></div>
+    <div class="mcp-prompt-layout">
+      <div class="mcp-prompt-title"><div class="t-meta">COPY · PASTE · RUN</div><h2>Let OpenCode<br/>configure MCP</h2><div class="mcp-no-touch"><i data-lucide="shield-check"></i><span>Keep the existing Novita provider and model unchanged.</span></div></div>
+      <div class="code-panel prompt-panel" data-anim="spec"><div class="code-head"><span>OPENCODE · ACTIONLAYER MCP PROMPT</span><button class="copy-btn" data-copy-target="setup-prompt" aria-label="Copy MCP setup prompt"><i data-lucide="copy"></i><span>Copy prompt</span></button></div><pre id="setup-prompt"><code>Configure ActionLayer MCP for this OpenCode project.
+
+1. Inspect the existing OpenCode config and preserve every provider,
+   model, tool, and permission setting.
+2. Add ActionLayer under OpenCode's current local MCP schema:
+   - name: actionlayer
+   - type: local
+   - command: ["uvx", "actionlayer-mcp"]
+   - enabled: true
+3. If that package or command has changed, use the current official
+   ActionLayer MCP installation method instead.
+4. Do not change the active model or Novita configuration.
+5. Never invent, hardcode, or print credentials. If authentication is
+   required, pause and ask me to complete it securely.
+
+Make the config change directly. Report only the file changed and tell
+me to run /mcp when it is ready.</code></pre><div class="code-foot"><span>Paste into</span><code>OpenCode chat</code></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide light" data-layout="S08" data-animate="duo-mirror">
+  <div class="canvas-card">
+    <div class="chrome-min"><div class="l">STEP 03 · CHECK CONNECTION</div><div class="r">03 / 04</div></div>
+    <div style="display:flex;flex-direction:column;gap:1.2vh;margin-bottom:5vh"><div class="t-meta">ONE COMMAND · ONE STATUS</div><h2 style="font-weight:200;font-size:min(6.7vw,11.8vh);line-height:.98">Check the MCP connection</h2></div>
+    <div class="duo-compare mcp-check" data-anim="compare">
+      <div class="col"><div class="col-tag"><span class="num">01</span><span>TYPE IN OPENCODE</span></div><div class="command-hero"><code>/mcp</code><button class="copy-btn light-btn" data-copy-target="mcp-command" aria-label="Copy MCP command"><i data-lucide="copy"></i><span>Copy</span></button></div><span id="mcp-command" class="copy-source">/mcp</span></div>
+      <span class="vrule"></span>
+      <div class="col accent"><div class="col-tag"><span class="num">02</span><span>LOOK FOR</span></div><div class="mcp-status"><span class="status-square"></span><div><strong>actionlayer</strong><code>connected</code></div></div><p class="col-desc">Connected means the MCP tools are ready in this OpenCode session.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide grey" data-layout="S09" data-animate="matrix-statement">
+  <div class="canvas-card">
+    <span class="dot-mat" style="right:5vw;top:8vh;width:26vw;height:26vw;opacity:.2"></span>
+    <div class="chrome-min"><div class="l">STEP 04 · ASK</div><div class="r">04 / 04</div></div>
+    <div class="ask-final"><div class="t-meta">MCP CONNECTED · START THE WORKSHOP</div><h2>Ask directly.</h2></div>
+    <div class="code-panel final-ask-panel" data-anim="up"><div class="code-head"><span>OPENCODE · FIRST ACTIONLAYER QUESTION</span><button class="copy-btn" data-copy-target="capability-prompt" aria-label="Copy question"><i data-lucide="copy"></i><span>Copy question</span></button></div><pre id="capability-prompt"><code>What can ActionLayer do?</code></pre><div class="code-foot"><span>Send</span><code>Choose one capability and try it live</code></div></div>
+  </div>
+</section>

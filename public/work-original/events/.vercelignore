@@ -1,0 +1,4 @@
+.env*
+node_modules
+jobs
+novita-ui-skill

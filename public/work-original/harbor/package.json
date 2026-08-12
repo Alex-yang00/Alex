@@ -1,0 +1,9 @@
+{
+  "private": true,
+  "dependencies": {
+    "@vercel/blob": "^2.1.0"
+  },
+  "scripts": {
+    "build": "node -e \"console.log('static build')\""
+  }
+}

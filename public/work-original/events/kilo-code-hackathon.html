@@ -1,0 +1,636 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Novita x Kilo Code Hackathon</title>
+  <meta name="description" content="Build a website or pitch deck with Novita and Kilo Code. Submit by July 8, 2026, 11:59 PM PT.">
+  <link rel="icon" media="(prefers-color-scheme: light)" href="https://novita.ai/favicon.ico">
+  <link rel="icon" media="(prefers-color-scheme: dark)" href="https://novita.ai/favicon-dark.ico">
+  <style>
+    :root {
+      --bg: #f7f7f2;
+      --paper: #ffffff;
+      --ink: #080808;
+      --muted: #5f5f58;
+      --line: rgba(8, 8, 8, .12);
+      --green: #23d57c;
+      --yellow: #f6c700;
+      --blue: #315cff;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      --sans: "Aptos", "DM Sans", ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --shadow: 0 24px 60px rgba(8, 8, 8, .12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background:
+        linear-gradient(90deg, rgba(8, 8, 8, .04) 1px, transparent 1px),
+        linear-gradient(rgba(8, 8, 8, .04) 1px, transparent 1px),
+        var(--bg);
+      background-size: 44px 44px, 44px 44px, auto;
+      color: var(--ink);
+      font-family: var(--sans);
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .wrap {
+      width: min(1180px, calc(100vw - 48px));
+      margin: 0 auto;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      border-bottom: 1px solid var(--line);
+      background: rgba(247, 247, 242, .88);
+      backdrop-filter: blur(18px);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 76px;
+      gap: 20px;
+    }
+
+    .brand,
+    .nav-links,
+    .chips,
+    .actions {
+      display: flex;
+      align-items: center;
+    }
+
+    .brand {
+      gap: 10px;
+      font-weight: 780;
+      font-size: 20px;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .brand svg {
+      width: 24px;
+      height: 24px;
+      flex: 0 0 auto;
+    }
+
+    .nav-links {
+      gap: 8px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .nav-links a {
+      display: inline-flex;
+      align-items: center;
+      min-height: 38px;
+      border-radius: 999px;
+      padding: 0 14px;
+    }
+
+    .nav-links a:hover {
+      background: rgba(8, 8, 8, .06);
+      color: var(--ink);
+    }
+
+    .nav-links .outline {
+      border: 1px solid rgba(8, 8, 8, .72);
+      color: var(--ink);
+    }
+
+    .hero {
+      min-height: calc(100vh - 76px);
+      padding: 56px 0 34px;
+      display: grid;
+      align-items: center;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(340px, .52fr);
+      gap: 36px;
+      align-items: stretch;
+    }
+
+    .copy {
+      display: grid;
+      gap: 22px;
+      align-content: center;
+      min-width: 0;
+    }
+
+    .chips {
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      min-height: 30px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .7);
+      padding: 0 11px;
+      font: 800 11px/1 var(--mono);
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .chip.live {
+      border-color: rgba(35, 213, 124, .45);
+      background: rgba(35, 213, 124, .12);
+      color: #0f8d4d;
+    }
+
+    .chip.live::before {
+      width: 8px;
+      height: 8px;
+      margin-right: 8px;
+      border-radius: 999px;
+      background: var(--green);
+      box-shadow: 0 0 0 4px rgba(35, 213, 124, .14);
+      content: "";
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin: 0;
+    }
+
+    h1 {
+      max-width: 860px;
+      font-size: clamp(48px, 7vw, 96px);
+      line-height: .9;
+      font-weight: 840;
+      letter-spacing: 0;
+    }
+
+    h1 span {
+      display: block;
+      color: #12a85f;
+    }
+
+    .lead {
+      max-width: 680px;
+      color: #2c2c28;
+      font-size: clamp(19px, 1.7vw, 24px);
+      line-height: 1.4;
+    }
+
+    .actions {
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      border: 1px solid var(--ink);
+      border-radius: 999px;
+      background: var(--ink);
+      color: #fff;
+      padding: 0 22px;
+      font-size: 14px;
+      font-weight: 780;
+      transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 34px rgba(8, 8, 8, .18);
+    }
+
+    .btn.secondary {
+      border-color: var(--line);
+      background: rgba(255, 255, 255, .76);
+      color: var(--ink);
+    }
+
+    .btn.secondary:hover {
+      background: rgba(35, 213, 124, .1);
+      box-shadow: 0 12px 26px rgba(35, 213, 124, .12);
+    }
+
+    .facts {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      max-width: 760px;
+    }
+
+    .fact,
+    .panel,
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, .78);
+      box-shadow: 0 10px 24px rgba(8, 8, 8, .05);
+    }
+
+    .fact {
+      padding: 16px;
+    }
+
+    .fact strong {
+      display: block;
+      font-size: clamp(26px, 3vw, 36px);
+      line-height: 1;
+      font-weight: 820;
+    }
+
+    .fact span {
+      display: block;
+      margin-top: 8px;
+      color: var(--muted);
+      font: 800 10px/1.3 var(--mono);
+      text-transform: uppercase;
+    }
+
+    .panel {
+      display: grid;
+      grid-template-rows: auto 1fr;
+      min-width: 0;
+      overflow: hidden;
+      background: #0b0b0b;
+      color: #fff;
+      box-shadow: 18px 18px 0 rgba(35, 213, 124, .18), var(--shadow);
+    }
+
+    .panel-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255, 255, 255, .14);
+      padding: 14px 16px;
+      color: #bdbdb5;
+      font: 800 11px/1 var(--mono);
+      text-transform: uppercase;
+    }
+
+    .dots {
+      display: flex;
+      gap: 6px;
+    }
+
+    .dots span {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #444;
+    }
+
+    .dots span:first-child {
+      background: var(--green);
+    }
+
+    .panel-body {
+      display: grid;
+      gap: 16px;
+      align-content: center;
+      padding: 24px;
+    }
+
+    .prompt {
+      border: 1px solid rgba(255, 255, 255, .14);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, .05);
+      padding: 18px;
+      font: 800 15px/1.6 var(--mono);
+    }
+
+    .prompt b {
+      color: var(--green);
+    }
+
+    .deliverables {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .deliverables div {
+      border: 1px solid rgba(255, 255, 255, .14);
+      border-radius: 8px;
+      padding: 14px;
+      color: #dcdcd4;
+      font: 800 12px/1.35 var(--mono);
+      text-transform: uppercase;
+    }
+
+    section {
+      padding: 72px 0;
+      border-bottom: 1px solid var(--line);
+      scroll-margin-top: 90px;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 28px;
+      margin-bottom: 26px;
+    }
+
+    h2 {
+      max-width: 760px;
+      font-size: clamp(36px, 4.5vw, 60px);
+      line-height: .95;
+      font-weight: 820;
+    }
+
+    .note {
+      max-width: 380px;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.45;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .card {
+      min-height: 168px;
+      padding: 22px;
+    }
+
+    .card strong {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 24px;
+      line-height: 1.05;
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.45;
+    }
+
+    .card a {
+      color: var(--ink);
+      font-weight: 820;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .final {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 24px;
+      align-items: center;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background:
+        linear-gradient(135deg, rgba(35, 213, 124, .18), transparent 38%),
+        var(--paper);
+      padding: clamp(24px, 4vw, 42px);
+      box-shadow: var(--shadow);
+    }
+
+    .final p {
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.45;
+    }
+
+    .footer {
+      padding: 36px 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .footer a {
+      color: var(--ink);
+      font-weight: 780;
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .final {
+        grid-template-columns: 1fr;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-links {
+        display: none;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .wrap {
+        width: min(280px, calc(100vw - 32px));
+      }
+
+      .hero {
+        min-height: auto;
+        padding: 42px 0 30px;
+      }
+
+      h1 {
+        font-size: 46px;
+        line-height: .94;
+      }
+
+      .lead {
+        font-size: 18px;
+      }
+
+      .copy,
+      .panel {
+        width: 100%;
+        max-width: 280px;
+      }
+
+      .facts,
+      .deliverables {
+        grid-template-columns: 1fr;
+      }
+
+      .btn,
+      .actions {
+        width: 100%;
+      }
+
+      .section-head,
+      .footer-inner {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      section {
+        padding: 52px 0;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="/work/events" aria-label="Novita Events home">
+        <svg viewBox="0 0 24 24" role="img" aria-label="Novita AI" xmlns="http://www.w3.org/2000/svg">
+          <title>Novita AI</title>
+          <path clip-rule="evenodd" d="M9.167 4.17v5.665L0 19.003h9.167v-5.666l5.666 5.666H24L9.167 4.17z" fill="currentColor" fill-rule="evenodd"></path>
+        </svg>
+        <span>Novita x Kilo Code</span>
+      </a>
+      <div class="nav-links" aria-label="Page navigation">
+        <a href="#enter">How to enter</a>
+        <a href="#kickoff">Kickoff</a>
+        <a class="outline" href="https://form.typeform.com/to/M3MQhjM5" target="_blank" rel="noreferrer">Submit</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div class="copy">
+          <div class="chips">
+            <span class="chip live">Live</span>
+            <span class="chip">Due July 8, 11:59 PM PT</span>
+          </div>
+          <h1><span>Build a site.</span>Win credits.</h1>
+          <p class="lead">A one-week hackathon for websites and pitch decks built with Novita + Kilo Code.</p>
+          <div class="actions">
+            <a class="btn" href="https://form.typeform.com/to/M3MQhjM5" target="_blank" rel="noreferrer">Submit project</a>
+            <a class="btn secondary" href="#kickoff">Watch kickoff</a>
+          </div>
+          <div class="facts" aria-label="Hackathon facts">
+            <div class="fact"><strong>$3K</strong><span>Novita AI credits</span></div>
+            <div class="fact"><strong>Kilo</strong><span>Swag</span></div>
+            <div class="fact"><strong>Promo</strong><span>Social amplification</span></div>
+          </div>
+        </div>
+
+        <aside class="panel" aria-label="Submission brief">
+          <div class="panel-head">
+            <span>Submission brief</span>
+            <div class="dots" aria-hidden="true"><span></span><span></span><span></span></div>
+          </div>
+          <div class="panel-body">
+            <div class="prompt"><b>Build:</b> a resume site, portfolio, startup site, or pitch deck.</div>
+            <div class="deliverables">
+              <div>Site or deck</div>
+              <div>Link or repo</div>
+              <div>X post</div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="enter">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>How to enter</h2>
+          <p class="note">Build it. Share it. Tag us.</p>
+        </div>
+        <div class="cards">
+          <article class="card">
+            <strong>1. Build</strong>
+            <p>Create a site or pitch deck with Kilo Code and Novita.</p>
+          </article>
+          <article class="card">
+            <strong>2. Share</strong>
+            <p>Submit your public link or GitHub repo.</p>
+          </article>
+          <article class="card">
+            <strong>3. Post</strong>
+            <p>Post on X and tag <a href="https://x.com/novita_labs" target="_blank" rel="noreferrer">@novita_labs</a> and <a href="https://x.com/kilocode" target="_blank" rel="noreferrer">@kilocode</a>.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="kickoff">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Kickoff Night</h2>
+          <p class="note">The kickoff has passed. Watch the recording.</p>
+        </div>
+        <div class="cards">
+          <article class="card">
+            <strong>Kickoff recording</strong>
+            <p>Novita x Kilo Code Hackathon kickoff night.</p>
+            <p style="margin-top:16px"><a class="btn secondary" href="https://www.youtube.com/watch?v=g20NqLaeKvE&t=2s" target="_blank" rel="noreferrer">Watch video</a></p>
+          </article>
+          <article class="card">
+            <strong>Hosted by PostHog</strong>
+            <p>Thanks to PostHog for hosting the in-person kickoff.</p>
+          </article>
+          <article class="card">
+            <strong>Join link</strong>
+            <p>Use the event link for context and updates.</p>
+            <p style="margin-top:16px"><a class="btn secondary" href="https://t.co/zDCtH9RJMK" target="_blank" rel="noreferrer">Open event</a></p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="final">
+          <div>
+            <h2>Submit by July 8.</h2>
+            <p>The form takes about 90 seconds.</p>
+          </div>
+          <a class="btn" href="https://form.typeform.com/to/M3MQhjM5" target="_blank" rel="noreferrer">Submit project</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <span>(c) 2026 Novita AI. All rights reserved.</span>
+      <a href="/work/events">Back to Novita Events</a>
+    </div>
+  </footer>
+</body>
+</html>
