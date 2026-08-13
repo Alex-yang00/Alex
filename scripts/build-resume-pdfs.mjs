@@ -51,9 +51,8 @@ const stopProcessGroup = (child) => {
   }
 };
 
-const printPdf = async (language, filename) => {
-  const output = resolve(root, "public", filename);
-  const profileDir = mkdtempSync(join(tmpdir(), `alex-resume-${language}-`));
+const printPdf = async (path, output) => {
+  const profileDir = mkdtempSync(join(tmpdir(), "alex-resume-"));
   if (existsSync(output)) unlinkSync(output);
 
   const renderer = spawn(
@@ -72,7 +71,7 @@ const printPdf = async (language, filename) => {
       "--virtual-time-budget=1500",
       `--user-data-dir=${profileDir}`,
       `--print-to-pdf=${output}`,
-      `${origin}/resume?lang=${language}`,
+      `${origin}${path}`,
     ],
     { stdio: "ignore", detached: true },
   );
@@ -93,8 +92,24 @@ const printPdf = async (language, filename) => {
 
 try {
   await waitForServer();
-  await printPdf("en", "resume-en.pdf");
-  await printPdf("zh", "resume-zh.pdf");
+  const mergeDir = mkdtempSync(join(tmpdir(), "alex-resume-pages-"));
+  const englishPage = join(mergeDir, "resume-en.pdf");
+  const chinesePage = join(mergeDir, "resume-zh.pdf");
+  const output = resolve(root, "public", "resume.pdf");
+
+  try {
+    await printPdf("/resume?lang=en", englishPage);
+    await printPdf("/resume?lang=zh", chinesePage);
+    if (existsSync(output)) unlinkSync(output);
+
+    const merger = "/System/Library/Automator/Combine PDF Pages.action/Contents/MacOS/join";
+    const result = spawnSync(merger, ["-o", output, englishPage, chinesePage], { stdio: "inherit" });
+    if (result.status !== 0 || !existsSync(output) || statSync(output).size === 0) {
+      throw new Error("Failed to combine the English and Chinese resume pages.");
+    }
+  } finally {
+    rmSync(mergeDir, { recursive: true, force: true });
+  }
 } finally {
   stopProcessGroup(preview);
 }

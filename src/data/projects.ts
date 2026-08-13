@@ -16,9 +16,9 @@ export const projects: Project[] = [
   {
     name: "Hermes Agent x NovitaAI",
     category: "Partnership / Provider Integration",
-    outcome: "500K X impressions",
+    outcome: "Full-cycle partnership / 1000K reach",
     description:
-      "Owned the outreach, relationship building, provider positioning, and co-marketing launch that made NovitaAI a first-class built-in provider for Hermes Agent, reaching roughly 500K X impressions.",
+      "Owned the full partnership cycle from outreach and relationship building to provider positioning, integration support, co-marketing launch, and BD follow-up, helping make NovitaAI a first-class built-in provider for Hermes Agent.",
     links: [
       {
         label: "Provider docs",
@@ -60,11 +60,11 @@ export const projects: Project[] = [
     featured: true,
   },
   {
-    name: "OpenClaw + Kilo Code ClawShop",
-    category: "Live Sessions / Community Workshops",
-    outcome: "200+ live viewers each",
+    name: "OpenClaw Community Workshops",
+    category: "Foundation Relations / Joint Developer Programs",
+    outcome: "Joint workshops / 200+ live viewers",
     description:
-      "Led the OpenClaw AI Session process as NovitaAI DevRel and participated in Kilo Code's ClawShop, turning live developer sessions into public proof for AI agent tooling and community education.",
+      "Established ties with the OpenClaw Foundation and worked with the OpenClaw community to co-plan and co-host developer workshops, coordinating outreach, agenda design, livestream distribution, and follow-up to build ecosystem trust and BD opportunities.",
     links: [
       {
         label: "OpenClaw",
@@ -77,7 +77,7 @@ export const projects: Project[] = [
         type: "video",
       },
     ],
-    tech: ["Event hosting", "Workshop support", "AI developer tools"],
+    tech: ["Foundation relations", "Community co-hosting", "Workshops"],
   },
   {
     name: "awesome-hermes-tutorial",
@@ -125,10 +125,10 @@ export const projects: Project[] = [
   },
   {
     name: "NovitaAI Docs & Blog Operations",
-    category: "Developer Content Systems",
-    outcome: "Docs + blog maintenance",
+    category: "Developer Experience / Content Systems",
+    outcome: "Docs, onboarding, and content operations",
     description:
-      "Maintained developer documentation and core blog operations, using agent-assisted workflows to support technical content creation, editorial review, and AI agent developer onboarding.",
+      "Improved developer journeys across documentation, onboarding, tutorials, and product education, using agent-assisted workflows for technical content creation, editorial review, and distribution.",
     links: [
       {
         label: "Docs",
@@ -141,7 +141,7 @@ export const projects: Project[] = [
         type: "website",
       },
     ],
-    tech: ["Developer docs", "Agent workflows", "Editorial review"],
+    tech: ["Developer docs", "Onboarding", "Technical content"],
   },
   {
     name: "DevRel Automation Pipeline",

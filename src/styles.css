@@ -1843,9 +1843,10 @@ body:has(.resume-shell) .background {
   text-transform: uppercase;
 }
 
-.resume-hero h1 {
+.resume-name {
   color: var(--ink-blue);
   font-size: clamp(36px, 7vw, 50px);
+  line-height: 1.16;
   font-family: Charter, "Iowan Old Style", "Palatino Linotype", Georgia, serif;
   font-weight: 700;
   letter-spacing: -0.035em;
@@ -2424,8 +2425,8 @@ body:has(.resume-shell) .background {
 
   .resume-page {
     width: 210mm;
-    height: 297mm;
-    min-height: 297mm;
+    height: auto;
+    min-height: 290mm;
     overflow: hidden;
     break-after: auto;
     page-break-after: auto;
@@ -2438,7 +2439,16 @@ body:has(.resume-shell) .background {
     font-family: Charter, "Iowan Old Style", "Palatino Linotype", "Songti SC", STSong, Georgia, serif;
   }
 
-  .resume-page h1,
+  .resume-page + .resume-page {
+    break-before: page;
+    page-break-before: always;
+  }
+
+  .resume-page[lang="zh-CN"] {
+    min-height: 296mm;
+  }
+
+  .resume-name,
   .resume-contact a {
     color: #1b365d !important;
     opacity: 1 !important;

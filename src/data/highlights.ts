@@ -1,8 +1,8 @@
 export const highlights = [
   {
-    label: "Partnership Reach",
-    value: "500K",
-    detail: "Hermes Agent x NovitaAI X impressions",
+    label: "Ecosystem Reach",
+    value: "1000K",
+    detail: "across partner and launch campaigns",
     wide: false,
   },
   {
@@ -13,8 +13,8 @@ export const highlights = [
   },
   {
     label: "Community Growth",
-    value: "3K -> 5K",
-    detail: "Discord community members",
+    value: "X 2K -> 5K",
+    detail: "plus Discord growth from 3K to 5K",
     wide: false,
   },
   {
@@ -25,8 +25,8 @@ export const highlights = [
   },
   {
     label: "BD Resources",
-    value: "~$300K",
-    detail: "sourced through developer community marketing",
+    value: "~$500K",
+    detail: "sourced through ecosystem growth",
     wide: true,
   },
 ];

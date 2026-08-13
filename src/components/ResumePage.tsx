@@ -34,7 +34,7 @@ const english: ResumeContent = {
   lang: "en",
   kicker: "Developer Relations / AI Infrastructure",
   summary:
-    "I build developer growth systems for AI products - partnerships, technical content, community programs, and agent-powered workflows that turn infrastructure into adoption.",
+    "I lead developer ecosystem growth for AI products across BD, partnerships, developer experience, community programs, and technical content - turning infrastructure into adoption and qualified pipeline.",
   sectionLabels: {
     impact: "Selected Impact",
     experience: "Experience",
@@ -43,11 +43,11 @@ const english: ResumeContent = {
     education: "Education & Languages",
   },
   impacts: [
-    { label: "Partnership reach", value: "500K", detail: "Hermes Agent x NovitaAI impressions" },
+    { label: "Ecosystem reach", value: "1000K", detail: "partner and launch campaigns" },
     { label: "Open-source", value: "100+", detail: "merged outreach PRs" },
-    { label: "Community", value: "3K → 5K", detail: "Discord members" },
+    { label: "Community", value: "X 2K → 5K", detail: "plus Discord 3K → 5K" },
     { label: "Events", value: "200+", detail: "live viewers per session" },
-    { label: "BD resources", value: "~$300K", detail: "sourced via community marketing" },
+    { label: "BD resources", value: "~$500K", detail: "sourced through ecosystem growth" },
   ],
   experience: [
     {
@@ -55,8 +55,10 @@ const english: ResumeContent = {
       company: "NovitaAI",
       period: "Jan 2026 - Present",
       bullets: [
-        "Led the Hermes Agent partnership from outreach to built-in provider launch and co-marketing, generating about 500K X impressions.",
-        "Built DevRel automation supporting 100+ merged PRs and 10+ leads; grew Discord from 3K to 5K and sourced ~$300K in BD resources through community marketing.",
+        "Own developer ecosystem GTM across BD, outreach, partnerships, co-marketing, and developer programs - moving opportunities from first contact to integration, launch, and qualified pipeline.",
+        "Run ecosystem initiatives across vLLM, SGLang, Nous Research, Hugging Face, OpenClaw, and leading open-source communities through workshops, hackathons, livestreams, and technical outreach.",
+        "Improve developer experience across CLI workflows, docs, onboarding, demos, and feedback loops; built automation supporting 100+ merged PRs and 10+ commercial leads.",
+        "Create technical content, product videos, and launch campaigns; grew X from 2K to 5K and Discord from 3K to 5K, generating 1000K reach and ~$500K in BD resources.",
       ],
     },
     {
@@ -80,14 +82,14 @@ const english: ResumeContent = {
   ],
   projects: [
     {
-      name: "Hermes Agent x NovitaAI",
-      outcome: "Partnership / 500K reach",
-      description: "Provider integration, partner positioning, launch coordination, and co-marketing.",
+      name: "Nous Research (Hermes Agent)",
+      outcome: "Full-cycle / 1000K reach",
+      description: "Owned outreach, provider positioning, launch coordination, co-marketing, and BD follow-up.",
     },
     {
-      name: "DevRel Automation Pipeline",
-      outcome: "100+ PRs / 10+ leads",
-      description: "Agent workflows for open-source discovery, outreach, follow-up, and SEO.",
+      name: "OpenClaw Community Workshops",
+      outcome: "Foundation relationship / Joint programs",
+      description: "Established ties with the OpenClaw Foundation and co-hosted community workshops, connecting developer education with ecosystem trust and BD opportunities.",
     },
     {
       name: "AI Inference Service",
@@ -100,7 +102,7 @@ const english: ResumeContent = {
       description: "Practical tutorials for provider setup, messaging integration, and reusable agent templates.",
     },
   ],
-  skills: "Python / Rust / C++ / vLLM / sglang / WASI-NN / GPU TEE / Technical Writing / DevRel Automation",
+  skills: "BD & Partnerships / Developer Programs / Developer Experience / Technical Content / Python / Rust / C++ / vLLM / SGLang / GPU TEE",
   education: "Hanyang University - Software Engineering, 2019-2023; full scholarship, GPA 3.4",
   languages: "Chinese (native) / English (IELTS 6.5) / Korean (TOPIK 5)",
 };
@@ -109,7 +111,7 @@ const chinese: ResumeContent = {
   lang: "zh-CN",
   kicker: "开发者关系 / AI 基础设施",
   summary:
-    "专注 AI 产品的开发者增长：通过生态合作、技术内容、社区活动和智能体自动化工作流，将基础设施能力转化为开发者采用与商业机会。",
+    "负责 AI 产品的开发者生态增长，覆盖 BD、合作伙伴、开发者体验、社区项目与技术内容，将基础设施能力转化为产品采用和有效商业管线。",
   sectionLabels: {
     impact: "核心成果",
     experience: "工作经历",
@@ -118,11 +120,11 @@ const chinese: ResumeContent = {
     education: "教育与语言",
   },
   impacts: [
-    { label: "合作传播", value: "500K", detail: "Hermes Agent x NovitaAI 曝光" },
+    { label: "生态传播", value: "1000K", detail: "合作与发布活动曝光" },
     { label: "开源拓展", value: "100+", detail: "合并的外联 PR" },
-    { label: "社区增长", value: "3K → 5K", detail: "Discord 成员" },
+    { label: "社区增长", value: "X 2K → 5K", detail: "Discord 3K → 5K" },
     { label: "开发者活动", value: "200+", detail: "单场直播观众" },
-    { label: "BD 资源", value: "~$300K", detail: "开发者社区营销带来" },
+    { label: "BD 资源", value: "~$500K", detail: "生态增长带来" },
   ],
   experience: [
     {
@@ -130,8 +132,10 @@ const chinese: ResumeContent = {
       company: "NovitaAI",
       period: "2026.01 - 至今",
       bullets: [
-        "推动 Hermes Agent 合作，从商务拓展、内置供应商接入到联合发布，获得约 50 万次 X 平台曝光。",
-        "搭建 DevRel 自动化，促成 100+ PR 合并及 10+ 商业线索；推动 Discord 从 3K 增长至 5K，并通过社区营销带来约 30 万美元 BD 资源。",
+        "负责开发者生态 GTM，覆盖 BD、outreach、合作伙伴、联合营销与开发者项目，推动机会从首次接触走向集成、发布和有效商业管线。",
+        "围绕 vLLM、SGLang、Nous Research、Hugging Face、OpenClaw 及头部开源社区开展技术外联、workshop、黑客松与直播。",
+        "优化 CLI、文档、开发者 onboarding、Demo 与反馈闭环；搭建自动化流程，促成 100+ PR 合并及 10+ 商业线索。",
+        "制作技术内容、产品视频与发布活动；推动 X 从 2K 增长至 5K、Discord 从 3K 增长至 5K，获得 100 万曝光及约 50 万美元 BD 资源。",
       ],
     },
     {
@@ -155,14 +159,14 @@ const chinese: ResumeContent = {
   ],
   projects: [
     {
-      name: "Hermes Agent x NovitaAI",
-      outcome: "生态合作 / 50 万曝光",
-      description: "负责供应商接入、合作定位、发布协调与联合营销。",
+      name: "Nous Research (Hermes Agent)",
+      outcome: "全链路合作 / 100 万曝光",
+      description: "负责 outreach、供应商定位、发布协调、联合营销与 BD 跟进。",
     },
     {
-      name: "DevRel 自动化管线",
-      outcome: "100+ PR / 10+ 线索",
-      description: "构建开源项目发现、外联、跟进与 SEO 智能体工作流。",
+      name: "OpenClaw 社区联合 Workshop",
+      outcome: "基金会联系 / 联合活动",
+      description: "与 OpenClaw 基金会建立合作联系，联合社区策划并举办 workshop，将开发者教育转化为生态信任与 BD 机会。",
     },
     {
       name: "AI 推理服务",
@@ -175,7 +179,7 @@ const chinese: ResumeContent = {
       description: "提供模型供应商配置、消息渠道接入和智能体模板实战教程。",
     },
   ],
-  skills: "Python / Rust / C++ / vLLM / sglang / WASI-NN / GPU TEE / 技术写作 / DevRel 自动化",
+  skills: "BD 与生态合作 / 开发者运营 / 开发者体验 / 技术内容 / Python / Rust / C++ / vLLM / SGLang / GPU TEE",
   education: "汉阳大学 - 软件工程，2019-2023；全额奖学金，GPA 3.4",
   languages: "中文（母语）/ 英语（IELTS 6.5）/ 韩语（TOPIK 5）",
 };
@@ -193,7 +197,9 @@ function ResumeSheet({ content }: { content: ResumeContent }) {
       <header className="resume-hero">
         <div>
           <p className="resume-kicker">{content.kicker}</p>
-          <h1>{profile.name}</h1>
+          <div className="resume-name" lang="en" role="heading" aria-level={1}>
+            {profile.name}
+          </div>
           <p>{content.summary}</p>
         </div>
         <div className="resume-contact">
@@ -280,12 +286,14 @@ function ResumeSheet({ content }: { content: ResumeContent }) {
 }
 
 export function ResumePage() {
+  const isCombined = useMemo(() => new URLSearchParams(window.location.search).get("mode") === "all", []);
   const initialLanguage = useMemo<ResumeLanguage>(() => {
     const language = new URLSearchParams(window.location.search).get("lang");
     return language === "zh" ? "zh" : "en";
   }, []);
   const [language, setLanguage] = useState<ResumeLanguage>(initialLanguage);
   const content = resumeByLanguage[language];
+  const sheets = isCombined ? [english, chinese] : [content];
 
   const selectLanguage = (nextLanguage: ResumeLanguage) => {
     setLanguage(nextLanguage);
@@ -322,7 +330,7 @@ export function ResumePage() {
             </div>
             <a
               className="resume-download"
-              href={language === "zh" ? "/resume-zh.pdf" : "/resume-en.pdf"}
+              href="/resume.pdf"
               download
             >
               <Download aria-hidden="true" />
@@ -336,7 +344,9 @@ export function ResumePage() {
         </header>
 
         <div className="resume-document">
-          <ResumeSheet content={content} />
+          {sheets.map((sheet) => (
+            <ResumeSheet key={sheet.lang} content={sheet} />
+          ))}
         </div>
       </main>
     </>

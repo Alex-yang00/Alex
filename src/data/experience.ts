@@ -16,11 +16,12 @@ export const experiences: Experience[] = [
     period: "Jan 2026 - Present",
     location: "",
     summary:
-      "Developer relations for AI infrastructure and agent-facing developer tools, spanning partnerships, docs, community growth, content systems, and automation workflows.",
+      "Lead developer ecosystem growth for AI infrastructure and agent products, spanning BD, partnerships, developer experience, community programs, technical content, and growth automation.",
     bullets: [
-      "Led the Hermes Agent partnership from outreach to co-marketing launch, helping NovitaAI become a first-class built-in provider and reaching roughly 500K X impressions.",
-      "Hosted or participated in public AI developer sessions including OpenClaw AI Session and Kilo Code ClawShop, each with 200+ live viewers.",
-      "Built DevRel automation supporting 100+ merged PRs and 10+ leads; grew Discord from 3K to 5K and sourced ~$300K in BD resources through developer community marketing.",
+      "Own developer ecosystem GTM across BD, partner outreach, integrations, co-marketing, and developer programs - moving opportunities from first contact to launch and qualified pipeline.",
+      "Run initiatives across vLLM, SGLang, Nous Research, Hugging Face, OpenClaw, and leading open-source communities through workshops, hackathons, livestreams, and technical outreach.",
+      "Improve developer experience across CLI workflows, docs, onboarding, demos, and product feedback loops; built automation supporting 100+ merged PRs and 10+ commercial leads.",
+      "Create technical content, developer-facing videos, and launch campaigns; grew X from 2K to 5K and Discord from 3K to 5K, generating 1000K reach and ~$500K in BD resources.",
     ],
     current: true,
   },
